@@ -1,0 +1,37 @@
+.homepage{
+    padding: 150px;
+}
+
+.homepage-alert{
+    width: auto;
+    height: 506px;
+    background-color: #393E46;
+    border-radius: 19px;
+    font-size:16px;
+    
+    .alert{
+        text-align: center;
+        color: white;
+        font-size: 40px;
+        padding: 20px;
+        padding-top: 80px;
+    }
+    .b-clicks{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 100px;
+    }
+}
+
+button{
+    
+    margin: 10px;
+    background-color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    white-space: normal;
+}

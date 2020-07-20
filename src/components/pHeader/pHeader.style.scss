@@ -1,0 +1,55 @@
+.nav{
+    height: 5vh;
+    background-color: #393E46;
+    .navlinks{
+        display: flex;
+        list-style: none;
+        justify-content: space-around;
+        padding-top: 8px;
+        align-items: center;
+        li{
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width:1000px){
+    .nav{
+        padding-top: 8px;
+        .navlinks{
+            justify-content: start;
+        }
+    }
+    .line{
+        width: 30px;
+        height: 3px;
+        background: white;
+        margin-bottom: 8px;
+        margin-left: 10px;
+    }
+    .hamburger{
+        cursor: pointer;
+        
+    }
+    .navlinks{
+    position: fixed;
+    background-color: #393E46;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    clip-path: circle(100px at -10% -15%);
+    -webkit-clip-path: circle(100px at -10% -15%);
+    transition: all 1s ease-out;
+    li{
+        padding: 7%;
+    }
+    }
+    .navlinks.open{
+        position: relative;
+        clip-path: circle(1200px at -10% -15%);
+        -webkit-clip-path: circle(1200px at -10% -15%);
+        }
+}

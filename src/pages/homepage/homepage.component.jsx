@@ -4,7 +4,6 @@ import './homepage.style.scss';
 const homepage = () =>{
     return(
         <div className='homepage'>
-
         <div className='homepage-alert'>
             <div className='alert'>
             You haven’t signed in yet. Please sign in to continue visiting website.

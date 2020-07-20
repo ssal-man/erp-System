@@ -35,3 +35,24 @@ button{
     cursor: pointer;
     white-space: normal;
 }
+
+@media screen and (max-width:1000px){
+    .homepage{
+        padding: 30px;
+        .homepage-alert
+        {
+            .alert{
+                font-size: 35px;
+                padding-top: 20px;
+            }
+            height: auto;
+            .b-clicks{
+                flex-direction: column;
+                margin-top: 20px;
+            }
+        }
+    }
+    button{
+        font-size: 20px;
+    }
+}

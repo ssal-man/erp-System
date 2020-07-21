@@ -7,6 +7,10 @@
         justify-content: space-around;
         padding-top: 8px;
         align-items: center;
+        z-index: 5;
+        a{
+            text-decoration: none;
+        }
         li{
             color: white;
             text-decoration: none;
@@ -43,13 +47,18 @@
     clip-path: circle(100px at -10% -15%);
     -webkit-clip-path: circle(100px at -10% -15%);
     transition: all 1s ease-out;
+    pointer-events: none;
     li{
         padding: 7%;
     }
     }
     .navlinks.open{
-        position: relative;
+        pointer-events: all;
         clip-path: circle(1200px at -10% -15%);
         -webkit-clip-path: circle(1200px at -10% -15%);
         }
+        .navlinks.close{
+            clip-path: circle(100px at -10% -15%);
+            -webkit-clip-path: circle(100px at -10% -15%);
+            }    
 }

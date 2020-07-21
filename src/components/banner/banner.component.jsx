@@ -4,7 +4,7 @@ import './banner.style.scss';
 const banner = () =>{
     return(
         <div className='banner'>
-            ERP SYSTEM
+            <a href='/'>ERP SYSTEM</a>
         </div>
     );
 }

@@ -12,7 +12,12 @@ ReactDOM.render(
 );
 
 var hamburger = document.querySelector('.hamburger');
-    var navLinks = document.querySelector('.navlinks');
-    hamburger.addEventListener('click',()=>{
+var navLinks = document.querySelector('.navlinks');
+
+
+hamburger.addEventListener('click',()=>{
         navLinks.classList.toggle("open");
 })
+
+navLinks.addEventListener('click',()=>{
+  navLinks.classList.toggle("open")});

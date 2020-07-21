@@ -1,5 +1,6 @@
 import React from 'react';
 import './pHeader.style.scss';
+import { Link } from 'react-router-dom';
 
 const pHeader = () =>{
     return(
@@ -10,7 +11,7 @@ const pHeader = () =>{
                 <div className='line'></div>
             </div>            
             <ul className='navlinks'>
-                <li>Student's Profile</li>
+                <Link to='/sp'><li>Student's Profile</li></Link>
                 <li>Attendance</li>
                 <li>Notice Board</li>
                 <li>Examination</li>

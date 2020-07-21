@@ -7,3 +7,11 @@ export const setCurrentUser = user => {
         payload: user
     })
 }
+
+export const removeUser = () => {
+    return(
+    {
+        type: UserActionType.REMOVE_USER,
+        payload: {}
+    })
+}

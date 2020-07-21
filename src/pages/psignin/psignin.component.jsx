@@ -3,22 +3,24 @@ import './psignin.style.scss';
 import Forminput from '../../components/forminput/forminput.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import { getStudent } from '../../firebase/firebase.utils';
+import { setCurrentUser } from '../../redux/user/user.action';
+import { connect } from 'react-redux';
 
 
 class ParentSignIn extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             admissionNo: '',
             password: '',
-            currentUser:{}
         }
     }
 
     handleSubmit = async event => {
+        const { setCurrentUser } = this.props
         const {admissionNo,password}=this.state
         event.preventDefault();
-        this.setState({currentUser:await getStudent(admissionNo,password)},()=>{console.log(this.state.currentUser)})
+        setCurrentUser(await getStudent(admissionNo,password))
         this.setState({ admissionNo: '', password: '' })
     }
 
@@ -45,4 +47,8 @@ class ParentSignIn extends Component {
     }
 }
 
-export default ParentSignIn;
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+  })
+
+export default connect(null,mapDispatchToProps)(ParentSignIn);

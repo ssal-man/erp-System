@@ -3,23 +3,25 @@ import './tsignin.style.scss';
 import Forminput from '../../components/forminput/forminput.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import { getTeacher } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/user/user.action';
 // import { Link } from 'react-router-dom';
 // import { auth } from '../../firebase/firebase.utils';
 
 class TeacherSignIn extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
-            currentUser:{}
         }
     }
 
     handleSubmit = async event => {
+        const { setCurrentUser } = this.props
         const {email,password} = this.state
         event.preventDefault();
-        this.setState({currentUser:await getTeacher(email,password)},()=>{console.log(this.state.currentUser)})
+        setCurrentUser(await getTeacher(email,password))
         this.setState({ email: '', password: '' })
     }
 
@@ -46,4 +48,8 @@ class TeacherSignIn extends Component {
     }
 }
 
-export default TeacherSignIn;
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+  })
+
+export default connect(null,mapDispatchToProps)(TeacherSignIn);

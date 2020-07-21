@@ -45,9 +45,7 @@ export const getTeacher = async (email,password) => {
     const snap = await firestore.collection('teachers').get()
     snap.forEach(doc => {
             const data = doc.data()
-            // console.log(data.email,email)
          if (data.email === email) {
-             console.log("hi")
                 if(data.password===password){
                     teacherObject=data
                 }

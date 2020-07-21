@@ -3,23 +3,25 @@ import './asignin.style.scss';
 import Forminput from '../../components/forminput/forminput.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import { getAdmin } from '../../firebase/firebase.utils';
+import { setCurrentUser } from '../../redux/user/user.action';
+import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { auth } from '../../firebase/firebase.utils';
 
 class AdminSignIn extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
-            currentUser:{}
         }
     }
 
     handleSubmit = async event => {
+        const { setCurrentUser } = this.props
         const {email,password} = this.state
         event.preventDefault();
-        this.setState({currentUser:await getAdmin(email,password)},()=>{console.log(this.state.currentUser)})
+        setCurrentUser(await getAdmin(email,password))
         this.setState({ email: '', password: '' })
     }
 
@@ -30,7 +32,8 @@ class AdminSignIn extends Component {
 
     render() {
         return (
-            <div className='parent'>
+            <div className='paren    const { setCurrentUser } = this.props
+            t'>
                 <h2>Admin's Sign In</h2>
                 <form onSubmit={this.handleSubmit}>
                     <Forminput label="Email" name='email' type='email'
@@ -46,4 +49,8 @@ class AdminSignIn extends Component {
     }
 }
 
-export default AdminSignIn;
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+  })
+
+export default connect(null,mapDispatchToProps)(AdminSignIn);

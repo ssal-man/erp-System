@@ -18,3 +18,68 @@ var firebaseConfig = {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+export const getStudent = async (admsnNo,password) => {
+    var studentObject={}
+    const snap = await firestore.collection('students').get()
+    snap.forEach(doc => {
+            const data = doc.data()
+         if (data.admissionNo === admsnNo) {
+                if(data.password===password){
+                    studentObject=data
+                }
+                else{
+                    alert("Wrong Password")
+                }
+         }
+         
+    })
+    if(studentObject==={}){
+        alert("User doesn't exist")
+    }
+    return studentObject
+}
+
+export const getTeacher = async (email,password) => {
+    var teacherObject={}
+    const snap = await firestore.collection('teachers').get()
+    snap.forEach(doc => {
+            const data = doc.data()
+            // console.log(data.email,email)
+         if (data.email === email) {
+             console.log("hi")
+                if(data.password===password){
+                    teacherObject=data
+                }
+                else{
+                    alert("Wrong Password")
+                }
+         }
+         
+    })
+    if(teacherObject==={}){
+        alert("User doesn't exist")
+    }
+    return teacherObject
+}
+
+export const getAdmin = async (email,password) => {
+    var adminObject={}
+    const snap = await firestore.collection('admin').get()
+    snap.forEach(doc => {
+            const data = doc.data()
+         if (data.email === email) {
+                if(data.password===password){
+                    adminObject=data
+                }
+                else{
+                    alert("Wrong Password")
+                }
+         }
+         
+    })
+    if(adminObject==={}){
+        alert("User doesn't exist")
+    }
+    return adminObject
+}

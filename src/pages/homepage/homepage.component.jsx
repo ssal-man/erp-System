@@ -1,5 +1,6 @@
 import React from 'react';
 import './homepage.style.scss';
+import { Link } from 'react-router-dom';
 
 const homepage = () =>{
     return(
@@ -9,9 +10,9 @@ const homepage = () =>{
             You haven’t signed in yet. Please sign in to continue visiting website.
             </div>
             <div className='b-clicks'>
-                <button>Sign In as a Teacher</button>
-                <button>Sign In as a Parent/Student</button>
-                <button>Sign In as a Admin</button>
+                <Link to='/teacherSignIn'><button>Sign In as a Teacher</button></Link>
+                <Link to='/parentSignIn'><button>Sign In as a Parent/Student</button></Link>
+                <Link to='/adminSignIn'><button>Sign In as a Admin</button></Link>
             </div>
         </div>
         </div>

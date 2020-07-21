@@ -1,0 +1,24 @@
+.parent{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+  justify-content: center;
+  position: absolute;
+  height: 50%;
+  left:33%;
+  border-style: solid;
+  border-radius: 30px;
+  padding: 30px;
+  margin-top: 70px;
+
+  .signup{
+      cursor: pointer;
+  }
+}
+
+@media screen and (max-width:1000px){
+    .parent{
+        width: auto;
+        left:0%
+    }
+} 

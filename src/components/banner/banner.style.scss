@@ -13,8 +13,9 @@
         font-size: 20px;
         padding: 10px;
         right: 0%;
-        top:0.5%;
+        top:5px;
         position: absolute;
+        z-index: 1;
     }
 }
 a{
@@ -24,6 +25,6 @@ a{
 
 @media screen and (max-width:1000px){
     .banner{.sign-out{
-        top:7.5%
+        top:56px
     }}
 }

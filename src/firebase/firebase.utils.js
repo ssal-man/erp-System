@@ -34,7 +34,6 @@ export const getStudent = async (admsnNo,password) => {
          }
          
     })
-    console.log(studentObject.length)
     if(Object.keys(studentObject).length===0){
         alert("User doesn't exist")
     }
@@ -82,3 +81,4 @@ export const getAdmin = async (email,password) => {
     }
     return adminObject
 }
+

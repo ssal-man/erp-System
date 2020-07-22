@@ -5,6 +5,7 @@ import CustomButton from '../../components/custombutton/custombutton.component';
 import { getStudent } from '../../firebase/firebase.utils';
 import { setCurrentUser } from '../../redux/user/user.action';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 
 class ParentSignIn extends Component {
@@ -17,11 +18,12 @@ class ParentSignIn extends Component {
     }
 
     handleSubmit = async event => {
-        const { setCurrentUser } = this.props
+        const { setCurrentUser,history } = this.props
         const {admissionNo,password}=this.state
         event.preventDefault();
         setCurrentUser(await getStudent(admissionNo,password))
         this.setState({ admissionNo: '', password: '' })
+        history.push('/')
     }
 
     handleChange = event => {
@@ -51,4 +53,4 @@ const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user))
   })
 
-export default connect(null,mapDispatchToProps)(ParentSignIn);
+export default withRouter(connect(null,mapDispatchToProps)(ParentSignIn));

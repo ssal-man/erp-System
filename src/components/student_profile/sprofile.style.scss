@@ -33,6 +33,12 @@ img{
    width: auto;
    justify-content: center;
    align-items: center;
+   .headerp{
+       top:60px;
+       left:0px;
+       position: fixed;
+       width: 100%;
+   }
 }
 
 @media screen and (max-width:1000px){

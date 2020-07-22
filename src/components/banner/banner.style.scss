@@ -9,13 +9,21 @@
     align-items: center;
     font-size: 30px;
     .sign-out{
-        margin-left: auto;
         cursor: pointer;
         font-size: 20px;
         padding: 10px;
+        right: 0%;
+        top:0.5%;
+        position: absolute;
     }
 }
 a{
     text-decoration: none;
     color: white;
+}
+
+@media screen and (max-width:1000px){
+    .banner{.sign-out{
+        top:7.5%
+    }}
 }

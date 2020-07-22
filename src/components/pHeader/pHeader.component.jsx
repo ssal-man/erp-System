@@ -11,7 +11,7 @@ const pHeader = () =>{
                 <div className='line'></div>
             </div>            
             <ul className='navlinks'>
-                <Link to='/sp'><li>Student's Profile</li></Link>
+                <Link to='/'><li>Student's Profile</li></Link>
                 <li>Attendance</li>
                 <li>Notice Board</li>
                 <li>Examination</li>

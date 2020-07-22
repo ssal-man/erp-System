@@ -6,8 +6,8 @@ import { removeUser } from '../../redux/user/user.action';
 const banner = ({currentUser,removeUser}) =>{
     return(
         <div className='banner'>
-            <a href='/'>ERP SYSTEM</a>
-            {currentUser?<div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div>:null}
+            ERP SYSTEM
+            {currentUser?<a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a>:null}
         </div>
         
     );

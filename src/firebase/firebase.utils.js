@@ -92,23 +92,42 @@ export const getAdmin = async (email,password) => {
 //     })}
 // }
 
-export const getAttendance = async (admissionNo) =>{
+export const getAttendance = async (admissionNo,month) =>{
     const ref = firestore.collection(`students`).where("admissionNo","==",admissionNo)
     var detail = []
     const snap1 = await ref.get()
     snap1.forEach( doc => {
-        detailList(doc,admissionNo,detail)
+        detailList(doc,admissionNo,detail,month)
         })
-    return detail
+
+     detail.sort(compare)
+     return detail
 
 }
 
-const detailList = async (doc,admissionNo,detail) => {
+const detailList = async (doc,admissionNo,detail,month) => {
     const snap2 = await firestore.collection('students').doc(doc.id).collection('Attendance').get()
     snap2.forEach(doc2 => {
         const data = doc2.data()
         if (data.admissionNo === admissionNo) {
-            detail.push(data)
+            if(doc2.id.includes(month)){
+                detail.push(data)
+            }
         }
     })
+}
+
+    
+const compare = (a,b) =>{
+    var t = new Date(1970, 0, 1);
+    t.setSeconds(a.createdAt.seconds)
+    var f = t
+    t=new Date(1970, 0, 1);
+    t.setSeconds(b.createdAt.seconds)
+    var s=t
+    if(f.getDay()>s.getDay()){
+        return 1
+    }else{
+        return -1
+    }
 }

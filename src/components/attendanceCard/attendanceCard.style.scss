@@ -1,0 +1,15 @@
+.a-card{
+    font-size: 20px;
+    border-color:black;
+    border-style: solid;
+    width :50px;
+    margin:45px;
+    padding: 30px;
+}
+@media screen and (max-width:1000px){
+    .a-card{
+        left:25%;
+        position: relative;
+        display:block;
+    }
+}

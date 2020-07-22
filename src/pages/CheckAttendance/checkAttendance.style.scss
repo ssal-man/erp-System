@@ -7,4 +7,10 @@
         font-size: 25px;
         margin: 10px;
     }
+    .calender{
+        display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(300px,4fr));
+      grid-template-rows: 4fr;
+      
+    }
 }

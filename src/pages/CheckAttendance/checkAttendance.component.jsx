@@ -3,17 +3,19 @@ import './checkAttendance.style.scss';
 import PHeader from '../../components/pHeader/pHeader.component';
 import { getAttendance } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import { AttendanceCard } from '../../components/attendanceCard/attendanceCard.component';
 
 class CheckAttendance extends Component{
     constructor(){
         super();
         this.state={
-            details:[]
+            details:[],
+            month:'january'
         }
     }
 
     componentDidMount=async()=>{
-        this.setState({details:await getAttendance(this.props.currentUser.admissionNo)})
+        this.loadData()
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 
@@ -24,22 +26,35 @@ class CheckAttendance extends Component{
 
         navLinks.addEventListener('click',()=>{
         navLinks.classList.toggle("open")});
+
+        
+    }
+
+    loadData = async ()=>{
+        const data= await getAttendance(this.props.currentUser.admissionNo,this.state.month)
+        setTimeout(()=>{this.setState({details:data})},2000)
+        
+    }
+
+    handleChange = async ()=>{
+        var e = document.getElementById("months");
+        this.setState({month:e.options[e.selectedIndex].value},()=>{this.loadData()});
+        
     }
 
     render(){
-    console.log(this.state.details)
     return(
     <div className='check-attendance'>
         <div className="headerp">   
         <PHeader/>    
         </div>
         <div className='percentage'>
-            Your Attendance Till Date is :
+            Your Attendance Till Date is :{(this.props.currentUser.presentDays/this.props.currentUser.totalDays * 100).toFixed(2)}%
         </div>
         <div className='months'>
         <label htmlFor="months">Choose a month:</label>
-        <select name="months" id="months">
-            <option value="january">january</option>
+        <select name="months" id="months" onChange={this.handleChange} defaultValue="january">
+            <option value="january" >january</option>
             <option value="february">february</option>
             <option value="march">march</option>
             <option value="april">april</option>
@@ -56,10 +71,11 @@ class CheckAttendance extends Component{
         <div className='calender'>
             {
                 this.state.details.length===0?
-                <div>loading</div>:
-                this.state.details.forEach(obj=>(
-                    <div>{obj}</div>
+                <div>Not Available</div>:
+                this.state.details.map(detail=>(
+                    <AttendanceCard detail={detail} key={detail.createdAt}/>
                 ))
+
             }
         </div>
     </div>

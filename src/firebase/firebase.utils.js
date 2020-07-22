@@ -82,3 +82,33 @@ export const getAdmin = async (email,password) => {
     return adminObject
 }
 
+// export const addData = () =>{
+//     var i;
+//     for(i=1;i<=30;i++){
+//     firestore.collection('students').doc('iIbLFjaBCb9uPy0oYQzG').collection('Attendance').doc(`june${i}`).set({
+//         admissionNo:'100143',
+//         present:true,
+//         createdAt:new Date(2020,5,i)
+//     })}
+// }
+
+export const getAttendance = async (admissionNo) =>{
+    const ref = firestore.collection(`students`).where("admissionNo","==",admissionNo)
+    var detail = []
+    const snap1 = await ref.get()
+    snap1.forEach( doc => {
+        detailList(doc,admissionNo,detail)
+        })
+    return detail
+
+}
+
+const detailList = async (doc,admissionNo,detail) => {
+    const snap2 = await firestore.collection('students').doc(doc.id).collection('Attendance').get()
+    snap2.forEach(doc2 => {
+        const data = doc2.data()
+        if (data.admissionNo === admissionNo) {
+            detail.push(data)
+        }
+    })
+}

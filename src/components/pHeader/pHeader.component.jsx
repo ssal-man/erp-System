@@ -12,7 +12,7 @@ const pHeader = () =>{
             </div>            
             <ul className='navlinks'>
                 <Link to='/'><li>Student's Profile</li></Link>
-                <li>Attendance</li>
+                <Link to='/checkAttendance'><li>Attendance</li></Link>
                 <li>Notice Board</li>
                 <li>Examination</li>
                 <li>Fee Payment</li>

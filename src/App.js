@@ -11,6 +11,7 @@ import TeacherSignIn from './pages/tsignin/tsignin.component';
 import { connect } from 'react-redux';
 import checkAttendance from './pages/CheckAttendance/checkAttendance.component';
 import TeacherHomepage from './pages/teacherHomepage/teacherHomepage.component';
+import GiveAttendance from './pages/giveAttendance/giveAttendance.component';
 
 function App(props) {
   return (
@@ -23,6 +24,7 @@ function App(props) {
           <Route exact path='/adminSignIn' component={AdminSignIn}/>
           <Route exact path='/checkAttendance' component={checkAttendance}/>
           <Route exact path='/teacherHomepage' component={TeacherHomepage}/>
+          <Route exact path='/giveAttendance' component={GiveAttendance}/>
       </Switch>
       <Footer/>    
     </div>

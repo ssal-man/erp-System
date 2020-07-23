@@ -142,3 +142,66 @@ export const getStudentByClass = async(Class) =>{
     })
     return students
 }
+
+export const writeAttendance = async(present,admissionNo,Class) =>{
+    const snap = await firestore.collection(`students`).get()
+    var id = []
+    snap.forEach(async doc => {
+        if (Class === doc.data().Class) {
+            id.push(doc.id)
+        }
+    })
+    id.forEach(async id => {
+        const createdAt = new Date();
+        const Ref =  firestore.collection('students').doc(id).collection('Attendance').doc(`${month_name(createdAt.getMonth())}${createdAt.getDate()}`)    
+            try {
+                await Ref.set({
+                    present,
+                    admissionNo,
+                    createdAt,
+                })
+            }
+            catch (error) {
+                console.log("error in creating user", error.message)
+            }
+        
+    })
+}
+
+var month_name = function(n){
+    const mlist = [ "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" ];
+      return mlist[n];
+};
+
+
+export const alreadyDone= async(email)=>{
+    var today = new Date()
+    const snap = await firestore.collection(`teachers`).get();
+    var id;
+    snap.forEach(async doc => {
+        if (email === doc.data().email) {
+            id=(doc.id)
+        }
+    })
+    var doc= await firestore.collection('teachers').doc(id).get()
+    if('taken' in doc.data()){
+        var d = doc.data().taken
+        var t = new Date(1970, 0, 1);
+        t.setSeconds(d.seconds)
+        if(t.getDate()===today.getDate() && t.getMonth()===today.getMonth()){
+            alert("Attendance already taken!!")
+            return true
+        }else{
+            firestore.collection('teachers').doc(id).set({
+                taken:today
+            })
+            return false
+        }
+    }
+    else{
+    firestore.collection('teachers').doc(id).update({
+        taken:today,
+    })
+    return false
+     } 
+}

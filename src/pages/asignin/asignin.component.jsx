@@ -18,11 +18,12 @@ class AdminSignIn extends Component {
     }
 
     handleSubmit = async event => {
-        const { setCurrentUser } = this.props
+        const { setCurrentUser,history} = this.props
         const {email,password} = this.state
         event.preventDefault();
         setCurrentUser(await getAdmin(email,password))
         this.setState({ email: '', password: '' })
+        history.push('/adminHome')
     }
 
     handleChange = event => {

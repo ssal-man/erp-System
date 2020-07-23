@@ -192,7 +192,7 @@ export const alreadyDone= async(email)=>{
             alert("Attendance already taken!!")
             return true
         }else{
-            firestore.collection('teachers').doc(id).set({
+            firestore.collection('teachers').doc(id).update({
                 taken:today
             })
             return false
@@ -204,4 +204,49 @@ export const alreadyDone= async(email)=>{
     })
     return false
      } 
+}
+
+export const getAllStudents = async () =>{
+    var students=[]
+    const snap = await firestore.collection('students').get()
+    snap.forEach(doc=>{
+        const data=doc.data()
+        students.push(data)
+    })
+    return students;
+}
+
+export const changeSAttendance = async (nameString) =>{
+    var student;
+    const snap = await firestore.collection('students').get()
+    snap.forEach(doc=>{
+        const data=doc.data()
+        if(data.displayName===nameString){
+            student=data
+        }
+    })
+    return student;
+}
+
+export const writeSAttendance = async (present,dateStr,admissionNo)=>{
+    const snap = await firestore.collection(`students`).get();
+    var id;
+    snap.forEach(async doc => {
+        if (admissionNo === doc.data().admissionNo) {
+            id=(doc.id)
+        }
+    })
+    var d = []
+    d=dateStr.split("-")
+    var createdAt = new Date(d[0],d[1],d[2])
+    const ref=firestore.collection('students').doc(id).collection('Attendance').doc(`${month_name(createdAt.getMonth()-1)}${createdAt.getDate()}`)
+    try {
+        await ref.update({
+            present,
+            createdAt
+        })
+    }
+    catch (error) {
+        console.log("error in creating user", error.message)
+    }
 }

@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import checkAttendance from './pages/CheckAttendance/checkAttendance.component';
 import TeacherHomepage from './pages/teacherHomepage/teacherHomepage.component';
 import GiveAttendance from './pages/giveAttendance/giveAttendance.component';
+import AdminHome from './pages/adminHome/adminHome.component';
+import ChangeAttendance from './pages/changeAttendance/changeAttendance.component';
 
 function App(props) {
   return (
@@ -25,6 +27,8 @@ function App(props) {
           <Route exact path='/checkAttendance' component={checkAttendance}/>
           <Route exact path='/teacherHomepage' component={TeacherHomepage}/>
           <Route exact path='/giveAttendance' component={GiveAttendance}/>
+          <Route exact path='/adminHome' component={AdminHome}/>
+          <Route exact path='/changeAttendance' component={ChangeAttendance}/>
       </Switch>
       <Footer/>    
     </div>

@@ -15,7 +15,9 @@ class Ssprofile extends Component{
     const {student} = this.props
     var storage = firebase.storage();
     var pathReference = storage.ref(student.photo);
+    try{
     var imageUrl = await pathReference.getDownloadURL()
+    }catch(error){}
     this.setState({url:imageUrl})
 }
     render(){

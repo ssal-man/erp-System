@@ -10,6 +10,7 @@ import AdminSignIn from './pages/asignin/asignin.component';
 import TeacherSignIn from './pages/tsignin/tsignin.component';
 import { connect } from 'react-redux';
 import checkAttendance from './pages/CheckAttendance/checkAttendance.component';
+import TeacherHomepage from './pages/teacherHomepage/teacherHomepage.component';
 
 function App(props) {
   return (
@@ -21,6 +22,7 @@ function App(props) {
           <Route exact path='/teacherSignIn' component={TeacherSignIn}/>
           <Route exact path='/adminSignIn' component={AdminSignIn}/>
           <Route exact path='/checkAttendance' component={checkAttendance}/>
+          <Route exact path='/teacherHomepage' component={TeacherHomepage}/>
       </Switch>
       <Footer/>    
     </div>
@@ -32,3 +34,4 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(App);
+

@@ -131,3 +131,14 @@ const compare = (a,b) =>{
         return -1
     }
 }
+
+export const getStudentByClass = async(Class) =>{
+    var students=[]
+    const ref = firestore.collection(`students`).where("Class","==",Class)
+    const snap = await ref.get()
+    snap.forEach(doc=>{
+        var data = doc.data()
+        students.push(data)
+    })
+    return students
+}

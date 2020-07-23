@@ -19,12 +19,13 @@ class sprofile extends Component{
         var pathReference = storage.ref(currentUser.photo);
         var imageUrl = await pathReference.getDownloadURL()
         this.setState({url:imageUrl})
+        
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 
 
         hamburger.addEventListener('click',()=>{
-                navLinks.classList.toggle("open");
+            navLinks.classList.toggle("open");
         })
 
         navLinks.addEventListener('click',()=>{

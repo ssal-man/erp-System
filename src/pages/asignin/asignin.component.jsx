@@ -32,8 +32,7 @@ class AdminSignIn extends Component {
 
     render() {
         return (
-            <div className='paren    const { setCurrentUser } = this.props
-            t'>
+            <div className='parent'>
                 <h2>Admin's Sign In</h2>
                 <form onSubmit={this.handleSubmit}>
                     <Forminput label="Email" name='email' type='email'

@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import './checkNotice.style.scss';
 import THeader from '../../components/tHeader/tHeader.component';
+import { getNotices } from '../../firebase/firebase.utils';
+import firebase from 'firebase';
 
+var i=0
 class CheckNotice extends Component{
     constructor(props){
         super(props);
         this.state={
-            notices:[]
+            notices:[],
+            firedoc:[]
         }
     }
 
     componentDidMount = async () =>{
+        var docs=[]
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 
@@ -21,9 +26,17 @@ class CheckNotice extends Component{
 
         navLinks.addEventListener('click',()=>{
         navLinks.classList.toggle("open")});
-        // this.setState({notices:await getNotices()})
+        this.setState({notices:await getNotices()})
+        var storage = firebase.storage();
+        this.state.notices.forEach(async notice=>{
+                var pathReference = storage.ref(notice.doc);
+                try{
+                    var docUrl = await pathReference.getDownloadURL()
+                }catch(error){}
+                docs.push(docUrl)
+        })
+        setTimeout(()=>{this.setState({firedoc:docs})},1000)
     }
-
     render(){
         return(
             <div className='notices'>
@@ -31,12 +44,16 @@ class CheckNotice extends Component{
                      <THeader/>
                 </div>
                 {
+                    this.state.firedoc.length===0?
+                    <div>Loading</div>:
                     this.state.notices.map(notice=>(
-                        <div className='notice'>
-                            <span>Title:</span>
-                            <span>Description:</span>
-                            <span>Uploaded by:</span>
-                            <span>Doc:</span>
+                        <div className='notice' key={notice.email}>
+                            <span>Title:{notice.heading}</span>
+                            <span>Description:{notice.description}</span>
+                            <span>Uploaded by:{notice.email}</span>
+                            <div className='pdf'>
+                            <embed src={`${this.state.firedoc[i++]}`}  />
+                            </div>
                         </div>
                     ))
                 }

@@ -266,3 +266,13 @@ export const writeNotice =  (file,email,heading,description)=>{
         email
     })
 }
+
+export const getNotices = async () =>{
+    var notices=[]
+    const snap = await firestore.collection('notices').get()
+    snap.forEach(doc=>{
+        var data = doc.data()
+        notices.push(data)
+    })
+    return notices
+}

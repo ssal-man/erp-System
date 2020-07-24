@@ -1,0 +1,33 @@
+.notices{
+    margin-top: 150px;
+}
+
+span{
+    padding:10px;
+}
+
+.notice{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+.pdf{
+    justify-content: center;
+    embed{
+        height: 500px;
+        width: 500px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .pdf{
+        justify-content: center;
+        embed{
+            height: 500px;
+            width: 300px;
+        }
+    }
+}

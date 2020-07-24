@@ -32,7 +32,7 @@ class CheckAttendance extends Component{
 
     loadData = async ()=>{
         const data= await getAttendance(this.props.currentUser.admissionNo,this.state.month)
-        setTimeout(()=>{this.setState({details:data})},2000)
+        setTimeout(()=>{this.setState({details:data})},1000)
         
     }
 

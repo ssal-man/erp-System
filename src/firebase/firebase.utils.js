@@ -250,3 +250,19 @@ export const writeSAttendance = async (present,dateStr,admissionNo)=>{
         console.log("error in creating user", error.message)
     }
 }
+
+
+export const writeNotice =  (file,email,heading,description)=>{
+    var storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    fileRef.put(file).then(()=>{
+        console.log("uploaded")
+    })
+    firestore.collection('notices').add({
+        heading,
+        description,
+        craetedAt:new Date(),
+        doc:file.name,
+        email
+    })
+}

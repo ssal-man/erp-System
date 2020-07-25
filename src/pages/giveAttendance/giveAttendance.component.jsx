@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './giveAttendance.style.scss';
-import { getStudentByClass, writeAttendance, alreadyDone, updateDays } from '../../firebase/firebase.utils';
+import { getStudentByClass, writeAttendance, updateDays, emailDetails } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import THeader from '../../components/tHeader/tHeader.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
@@ -28,23 +28,37 @@ class GiveAttednance extends Component{
         navLinks.classList.toggle("open")});
     }
 
-     onSubmitHandle=  ()=>{
+     onSubmitHandle= async ()=>{
         this.state.students.forEach(async student=>{
-            var ae;
             if(document.getElementById(student.admissionNo).checked){
-                ae = await alreadyDone(this.props.currentUser.email)
-                if(!ae){
                 writeAttendance(true,student.admissionNo,student.Class)
                 updateDays(student.totalDays+1,student.presentDays+1,student.admissionNo)
-                }
+                
             }else{
-                ae = await alreadyDone(this.props.currentUser.email)
-                if(!ae){
                 writeAttendance(true,student.admissionNo,student.Class)
                 updateDays(student.totalDays+1,student.presentDays,student.admissionNo)
-            }}
+            }
         })
-            this.props.history.push('/teacherHomepage')
+        window.onload = function() {
+            const eList = emailDetails()
+            eList.forEach(obj => {
+              if(obj.fire===true){
+                window.Email.send({
+                Host : "smtp.gmail.com",
+                Username : "erpsystem@school.com",
+                Password : "E4834787E38CC612A340E2F90B74B20C96BE",
+                To : obj.parentEmail,
+                From : "testssalman@gmail.com",
+                Subject : "Monthly Attendance Report Card",
+                Body : `Hi ${obj.parentName},
+                total days school was open ${obj.totalDays} and your ward attended ${obj.presentDays} `
+      }).then(
+        message => alert(message)
+      );
+              }
+            });
+          };
+            
     }
 
 

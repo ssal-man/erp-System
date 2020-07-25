@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+
 var firebaseConfig = {
     apiKey: "AIzaSyChrS5ozV7d66pr250Of9-y5T8cWzpzGYo",
     authDomain: "erpsystempro-586da.firebaseapp.com",
@@ -291,3 +292,42 @@ export const updateDays = async (totalDays,presentDays,admissionNo) => {
         console.log(res)
 }
 
+const giveMonth = async (email) =>{
+    var mon;
+    const d = new Date();
+    const snap = await firestore.collection(`teachers`).get()
+    snap.forEach(async (doc,i) => {
+        if(doc.data().email===email){
+            var t = new Date(1970, 0, 1);
+            t.setSeconds(doc.data().taken.seconds)
+            mon =  t.getMonth()
+            var monc=d.getMonth()
+            if(mon===monc){
+                return true
+            }else{
+                return false
+            }
+        }
+    })
+}
+
+export const emailDetails= async()=>{
+    const details=[]
+    const snap1= await firestore.collection('students').get()
+    snap1.forEach(doc=>{
+        var emailsD={}
+        emailsD["email"]=doc.data().parentEmail
+        emailsD["totalDays"]= doc.data().totalDays
+        emailsD["presentDays"]= doc.data().presentDays
+        if(!giveMonth("teacher2@gmail.com")){
+            emailsD["fire"]=true
+        }else{
+            emailsD["fire"]=false
+        }
+        details.push(emailsD)
+    })
+    return details
+}
+
+
+// Password : "E4834787E38CC612A340E2F90B74B20C96BE"

@@ -12,7 +12,7 @@ const tHeader = () =>{
             </div>            
             <ul className='navlinks'>
                 <Link to='/teacherHomepage'><li>Student's Profile</li></Link>
-                <Link to='/giveAttendance'><li>Attendance</li></Link>
+                <Link to='/teacherAttendance'><li>Attendance</li></Link>
                 <Link to='/noticeTeacher'><li>Notice Board</li></Link>
                 <li>Examination</li>
                 {/* <li>Fee Payment</li>

@@ -1,0 +1,19 @@
+.check-attendance{
+    .percentage{
+        font-size: 30px;
+        margin: 30px;
+    }
+    .months{
+        font-size: 25px;
+        margin: 10px;
+    }
+    .calender{
+        display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(300px,4fr));
+      grid-template-rows: 4fr;
+      
+    }
+    .dropdown{
+        margin-top: 150px;
+    }
+}

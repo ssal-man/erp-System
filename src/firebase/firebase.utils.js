@@ -290,3 +290,4 @@ export const updateDays = async (totalDays,presentDays,admissionNo) => {
         const res = await Ref.update({ totalDays: totalDays, presentDays: presentDays });
         console.log(res)
 }
+

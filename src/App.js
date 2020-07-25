@@ -17,12 +17,15 @@ import ChangeAttendance from './pages/changeAttendance/changeAttendance.componen
 import CreateNotice from './pages/createNotice/createNotice.component';
 import CheckNotice from './pages/checkNotice/checkNotice.component';
 import NoticeTeacher from './pages/noticeTeacher/noticeTeacher.component';
+import TeacherCheckAttendance from './pages/teacherCheckAttendance/teacherCheckAttendance.component';
+import TeacherAttendance from './pages/teacherAttendance/teacherAttendance.component';
 
 function App(props) {
   return (
     <div className='App'>
       <Banner/>
       <Switch>
+
           <Route exact path='/' render={() => props.currentUser ? <Sprofile />:<Homepage/>} /> 
           <Route exact path='/parentSignIn' component={ParentSignIn}/>
           <Route exact path='/teacherSignIn' component={TeacherSignIn}/>
@@ -35,6 +38,9 @@ function App(props) {
           <Route exact path='/createNotice' component={CreateNotice}/>
           <Route exact path='/checkNotice' component={CheckNotice}/>
           <Route exact path='/noticeTeacher' component={NoticeTeacher}/>
+          <Route exact path='/teacherCheckAttendance' component={TeacherCheckAttendance}/>
+          <Route exact path='/teacherAttendance' component={TeacherAttendance}/>
+          
       </Switch>
       <Footer/>    
     </div>

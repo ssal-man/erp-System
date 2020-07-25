@@ -1,0 +1,19 @@
+.n-options{
+    margin-top: 150px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    .custom-button{
+        width: 500px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .n-options{
+        margin-top: 150px;
+        flex-direction: column;
+        .custom-button{
+            width: 300px;
+        }
+    }
+}

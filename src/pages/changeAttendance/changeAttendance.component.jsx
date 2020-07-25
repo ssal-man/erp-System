@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './changeAttendance.style.scss';
 import { connect } from 'react-redux';
-import { getAllStudents, changeSAttendance, writeSAttendance } from '../../firebase/firebase.utils';
+import { getAllStudents, changeSAttendance, writeSAttendance, updateDays } from '../../firebase/firebase.utils';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import AHeader from '../../components/aHeader/aHeader.component';
 
@@ -40,9 +40,11 @@ class ChangeAttendance extends Component{
                 if (rbtn[i].checked) {
                     if (rbtn[i].value === 'present') {
                         writeSAttendance(true,document.getElementById("changeAttendance").value,this.state.student.admissionNo)
+                        updateDays(this.state.student.totalDays,this.state.student.presentDays+1,this.state.student.admissionNo)
                     
                     } else {
                         writeSAttendance(false,document.getElementById("changeAttendance").value,this.state.student.admissionNo)
+                        updateDays(this.state.student.totalDays,this.state.student.presentDays-1,this.state.student.admissionNo)
                     }
             }}
             this.props.history.push('/adminHome')

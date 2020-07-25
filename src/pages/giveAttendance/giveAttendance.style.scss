@@ -1,5 +1,9 @@
 .sheet{
     margin-top: 200px;
+    input{
+      width : 30px;
+      height : 30px;
+  }
 }
 
 .table-cell{
@@ -19,10 +23,7 @@ table, th, td {
     table-layout: fixed;
     width: 500px;  
   }
-  input{
-    width : 30px;
-    height : 30px;
-}
+  
 
   @media screen and (max-width:1000px){
     td,th {

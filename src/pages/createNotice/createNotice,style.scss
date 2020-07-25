@@ -7,7 +7,9 @@
     align-items: center;
     
     input{
-        width:500px
+        width:500px;
+        margin: 20px;
+
     }
     .description{
         height: 100px;
@@ -17,9 +19,7 @@
     }
 }
 
-input{
-    margin: 20px;
-}
+
 
 @media screen and (max-width:1000px){
   .notice-form{  

@@ -2,7 +2,7 @@
 .container {
     display: flex;
     position: relative;
-    padding-left: 35px;
+    padding-left: 55px;
     margin: 12px;
     cursor: pointer;
     font-size: 22px;
@@ -54,10 +54,10 @@
   
   /* Style the indicator (dot/circle) */
   .container .checkmark:after {
-       top: 9px;
-      left: 9px;
-      width: 8px;
-      height: 8px;
+       top: 15px;
+      left: 15px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       background: white;
   }

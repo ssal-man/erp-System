@@ -276,3 +276,17 @@ export const getNotices = async () =>{
     })
     return notices
 }
+
+export const updateDays = async (totalDays,presentDays,admissionNo) => {
+    const snap = await firestore.collection(`students`).get()
+    var id
+    snap.forEach(async doc => {
+        if (admissionNo === doc.data().admissionNo) {
+            id=doc.id
+        }
+    })
+        const Ref = firestore.collection('students').doc(id)
+
+        const res = await Ref.update({ totalDays: totalDays, presentDays: presentDays });
+        console.log(res)
+}

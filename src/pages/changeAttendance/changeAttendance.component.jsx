@@ -100,4 +100,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(ChangeAttendance)
+export default connect(mapStateToProps)(ChangeAttendance);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './giveAttendance.style.scss';
-import { getStudentByClass, writeAttendance, updateDays, emailDetails } from '../../firebase/firebase.utils';
+import { getStudentByClass, writeAttendance, updateDays, emailDetails, checker } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import THeader from '../../components/tHeader/tHeader.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
@@ -29,13 +29,14 @@ class GiveAttednance extends Component{
     }
 
      onSubmitHandle= async ()=>{
+        if(await checker(this.props.currentUser.email)){
         this.state.students.forEach(async student=>{
             if(document.getElementById(student.admissionNo).checked){
-                writeAttendance(true,student.admissionNo,student.Class)
+                writeAttendance(true,student.admissionNo,student.Class,this.props.currentUser.email)
                 updateDays(student.totalDays+1,student.presentDays+1,student.admissionNo)
                 
             }else{
-                writeAttendance(true,student.admissionNo,student.Class)
+                writeAttendance(true,student.admissionNo,student.Class,this.props.currentUser.email)
                 updateDays(student.totalDays+1,student.presentDays,student.admissionNo)
             }
         })
@@ -58,8 +59,12 @@ class GiveAttednance extends Component{
               }
             });
           };
-            
+          this.props.history.push('/teacherHomepage')
+    }else{
+        alert("Attendance already taken")
+        this.props.history.push('/teacherHomepage')
     }
+}
 
 
     render(){

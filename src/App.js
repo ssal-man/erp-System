@@ -19,6 +19,7 @@ import CheckNotice from './pages/checkNotice/checkNotice.component';
 import NoticeTeacher from './pages/noticeTeacher/noticeTeacher.component';
 import TeacherCheckAttendance from './pages/teacherCheckAttendance/teacherCheckAttendance.component';
 import TeacherAttendance from './pages/teacherAttendance/teacherAttendance.component';
+import LeaveApplication from './pages/leaveApplication/leaveApplication.component';
 
 function App(props) {
   return (
@@ -40,7 +41,7 @@ function App(props) {
           <Route exact path='/noticeTeacher' component={NoticeTeacher}/>
           <Route exact path='/teacherCheckAttendance' component={TeacherCheckAttendance}/>
           <Route exact path='/teacherAttendance' component={TeacherAttendance}/>
-          
+          <Route exact path='/leaveApplication' component={LeaveApplication}/>
       </Switch>
       <Footer/>    
     </div>

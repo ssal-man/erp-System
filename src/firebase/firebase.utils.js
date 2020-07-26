@@ -121,10 +121,10 @@ const detailList = async (doc,admissionNo,detail,month) => {
     
 const compare = (a,b) =>{
     var t = new Date(1970, 0, 1);
-    t.setSeconds(a.createdAt.seconds)
+    t.setTime(a.createdAt.seconds*1000)
     var f = t
     t=new Date(1970, 0, 1);
-    t.setSeconds(b.createdAt.seconds)
+    t.setTime(b.createdAt.seconds*1000)
     var s=t
     if(f.getDay()>s.getDay()){
         return 1
@@ -144,7 +144,7 @@ export const getStudentByClass = async(Class) =>{
     return students
 }
 
-export const writeAttendance = async(present,admissionNo,Class) =>{
+export const writeAttendance = async(present,admissionNo,Class,email) =>{
     const snap = await firestore.collection(`students`).get()
     var id = []
     snap.forEach(async doc => {
@@ -167,6 +167,17 @@ export const writeAttendance = async(present,admissionNo,Class) =>{
             }
         
     })
+    var idt;
+    const snapt = await firestore.collection("teachers").get()
+    snapt.forEach(doc=>{
+        console.log(doc.data().email)
+        if(email===doc.data().email){
+            idt=doc.id
+        }
+    })
+    firestore.collection("teachers").doc(idt).update({
+        taken:new Date()
+    })
 }
 
 var month_name = function(n){
@@ -188,7 +199,7 @@ export const alreadyDone= async(email)=>{
     if('taken' in doc.data()){
         var d = doc.data().taken
         var t = new Date(1970, 0, 1);
-        t.setSeconds(d.seconds)
+        t.setTime(d.seconds*1000)
         if(t.getDate()===today.getDate() && t.getMonth()===today.getMonth()){
             alert("Attendance already taken!!")
             return true
@@ -237,14 +248,37 @@ export const writeSAttendance = async (present,dateStr,admissionNo)=>{
             id=(doc.id)
         }
     })
-    var d = []
-    d=dateStr.split("-")
-    var createdAt = new Date(d[0],d[1],d[2])
+    var createdAt = new Date(dateStr)
     const ref=firestore.collection('students').doc(id).collection('Attendance').doc(`${month_name(createdAt.getMonth()-1)}${createdAt.getDate()}`)
     try {
         await ref.update({
             present,
             createdAt
+        })
+    }
+    catch (error) {
+        console.log("error in creating user", error.message)
+    }
+}
+
+export const leaveSApplication = async (present,dateStr,admissionNo)=>{
+    console.log(dateStr)
+    const snap = await firestore.collection(`students`).get();
+    var id;
+    snap.forEach(async doc => {
+        if (admissionNo === doc.data().admissionNo) {
+            id=(doc.id)
+        }
+    })
+    console.log(dateStr)
+    var docIddate =dateStr.getDate()
+    var docIdmon=`${month_name(dateStr.getMonth())}`
+    const ref=firestore.collection('students').doc(id).collection('Attendance').doc(docIdmon+docIddate)
+    try {
+        await ref.set({
+            present,
+            admissionNo,
+            createdAt:dateStr,
         })
     }
     catch (error) {
@@ -299,7 +333,7 @@ const giveMonth = async (email) =>{
     snap.forEach(async (doc,i) => {
         if(doc.data().email===email){
             var t = new Date(1970, 0, 1);
-            t.setSeconds(doc.data().taken.seconds)
+            t.setTime(doc.data().taken.seconds*1000)
             mon =  t.getMonth()
             var monc=d.getMonth()
             if(mon===monc){
@@ -330,4 +364,22 @@ export const emailDetails= async()=>{
 }
 
 
-// Password : "E4834787E38CC612A340E2F90B74B20C96BE"
+export const checker = async (email) =>{
+    var taken
+    var createdAt=new Date()
+    const snap =await firestore.collection("teachers").get()
+    snap.forEach(doc=>{
+        if(doc.data().email===email){
+            taken=doc.data().taken
+        }
+    })
+    var t = new Date(1970, 0, 1);
+    t.setTime(taken.seconds*1000)
+    console.log(t.getDate(),createdAt.getDate(),taken)
+    if(t.getDate()!==createdAt.getDate()){
+        return true
+    }
+    else{
+        return false
+    }
+}

@@ -25,7 +25,7 @@ class TeacherAttendance extends Component{
                 </div>
                     <CustomButton onClick={()=>{this.props.history.push('/teacherCheckAttendance')}}>Check Attendance</CustomButton>
                     <CustomButton onClick={()=>{this.props.history.push('/giveAttendance')}}>Give Attendance</CustomButton>
-                    <CustomButton onClick={()=>{this.props.history.push('/')}}>Leave Application</CustomButton>
+                    <CustomButton onClick={()=>{this.props.history.push('/leaveApplication')}}>Leave Application</CustomButton>
                 </div>
             )
         }

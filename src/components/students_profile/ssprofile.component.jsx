@@ -33,7 +33,7 @@ class Ssprofile extends Component{
                 <span>Admission Number:{this.props.student.admissionNo}</span>
                 <span>Parent's Name:{this.props.student.parentName}</span>
                 <span>Email:{this.props.student.parentEmail}</span>
-                <span>Phone Number:{this.props.student.ParentPhNo}</span>
+                <span>Phone Number:{this.props.student.parentPhNo}</span>
             </div>
         </div>
         </div>

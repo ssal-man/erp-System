@@ -36,7 +36,7 @@ class CreateNoticeAdmin extends Component{
     onSubmitHandle=(e)=>{
         e.preventDefault();
         writeNotice(this.state.doc,this.props.currentUser.email,this.state.heading,this.state.description)
-        this.props.history.push('/checkNotice')
+        this.props.history.push('/adminHome')
     }
 
     onChangeFile = (e)=>{

@@ -53,7 +53,8 @@ class CheckNoticeAdmin extends Component{
                             <span>Notice#{`${notice.sno}`}</span>
                             <div className='c-display'>
                             <CustomButton onClick={()=>{this.props.history.push(`/editNotice/${notice.sno}`)}}>Edit</CustomButton>
-                            <CustomButton onClick={()=>{deleteNotice(notice.sno)}}>Delete</CustomButton>
+                            <CustomButton onClick={()=>{deleteNotice(notice.sno)
+                            this.props.history.push('/adminHome')}}>Delete</CustomButton>
                             </div>
                             <span>Title:{notice.heading}</span>
                             <span>Description:{notice.description}</span>

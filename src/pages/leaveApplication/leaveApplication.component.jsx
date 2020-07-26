@@ -45,6 +45,7 @@ class LeaveApplication extends Component{
             await leaveSApplication(true,from,document.getElementById('students').options[document.getElementById('students').selectedIndex].value)
             from.setDate(from.getDate()+1)
         }
+        this.props.history.push('/teacherHomepage')
     }
 
     onChangeDate = () =>{

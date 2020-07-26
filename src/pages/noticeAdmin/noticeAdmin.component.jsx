@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './noticeAdmin.style.scss';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import AHeader from '../../components/aHeader/aHeader.component';
+import { withRouter } from 'react-router-dom';
 
 class NoticeAdmin extends Component{
         componentDidMount(){
@@ -18,6 +19,7 @@ class NoticeAdmin extends Component{
         }
 
         render(){
+            console.log(this.props)
             return(
                 <div className="n-options">
                     <div className="headerp">
@@ -30,4 +32,4 @@ class NoticeAdmin extends Component{
         }
 }
 
-export default NoticeAdmin;
+export default withRouter(NoticeAdmin);

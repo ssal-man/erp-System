@@ -30,13 +30,18 @@ export const getStudent = async (admsnNo,password) => {
                     studentObject=data
                 }
                 else{
+                    window.location.href = '/'
                     alert("Wrong Password")
+                    
+
                 }
          }
          
     })
     if(Object.keys(studentObject).length===0){
+        window.location.href = '/'
         alert("User doesn't exist")
+
     }
     return studentObject
 }
@@ -51,12 +56,14 @@ export const getTeacher = async (email,password) => {
                     teacherObject=data
                 }
                 else{
+                    window.location.href = '/'
                     alert("Wrong Password")
                 }
          }
          
     })
     if(Object.keys(teacherObject).length===0){
+        window.location.href = '/'
         alert("User doesn't exist")
     }
     return teacherObject
@@ -72,12 +79,14 @@ export const getAdmin = async (email,password) => {
                     adminObject=data
                 }
                 else{
+                    window.location.href = '/'
                     alert("Wrong Password")
                 }
          }
          
     })
     if(Object.keys(adminObject).length===0){
+        window.location.href = '/'
         alert("User doesn't exist")
     }
     return adminObject

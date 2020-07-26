@@ -9,7 +9,7 @@ import ParentSignIn from './pages/psignin/psignin.component';
 import AdminSignIn from './pages/asignin/asignin.component';
 import TeacherSignIn from './pages/tsignin/tsignin.component';
 import { connect } from 'react-redux';
-import checkAttendance from './pages/CheckAttendance/checkAttendance.component';
+import CheckAttendance from './pages/CheckAttendance/checkAttendance.component';
 import TeacherHomepage from './pages/teacherHomepage/teacherHomepage.component';
 import GiveAttendance from './pages/giveAttendance/giveAttendance.component';
 import AdminHome from './pages/adminHome/adminHome.component';
@@ -36,22 +36,22 @@ function App(props) {
           <Route exact path='/parentSignIn' component={ParentSignIn}/>
           <Route exact path='/teacherSignIn' component={TeacherSignIn}/>
           <Route exact path='/adminSignIn' component={AdminSignIn}/>
-          <Route exact path='/checkAttendance' component={checkAttendance}/>
-          <Route exact path='/teacherHomepage' component={TeacherHomepage}/>
-          <Route exact path='/giveAttendance' component={GiveAttendance}/>
-          <Route exact path='/adminHome' component={AdminHome}/>
-          <Route exact path='/changeAttendance' component={ChangeAttendance}/>
-          <Route exact path='/createNotice' component={CreateNotice}/>
-          <Route exact path='/checkNotice' component={CheckNotice}/>
-          <Route exact path='/noticeTeacher' component={NoticeTeacher}/>
+          <Route exact path='/checkAttendance' render={() => props.currentUser ? <CheckAttendance />:<Homepage/>}/>
+          <Route exact path='/teacherHomepage' render={() => props.currentUser ? <TeacherHomepage />:<Homepage/>}/>
+          <Route exact path='/giveAttendance' render={() => props.currentUser ? <GiveAttendance />:<Homepage/>}/>
+          <Route exact path='/adminHome' render={() => props.currentUser ? <AdminHome />:<Homepage/>}/>
+          <Route exact path='/changeAttendance' render={() => props.currentUser ? <ChangeAttendance />:<Homepage/>}/>
+          <Route exact path='/createNotice' render={() => props.currentUser ? <CreateNotice />:<Homepage/>}/>
+          <Route exact path='/checkNotice' render={() => props.currentUser ? <CheckNotice />:<Homepage/>}/>
+          <Route exact path='/noticeTeacher' render={() => props.currentUser ? <NoticeTeacher />:<Homepage/>}/>
           <Route exact path='/teacherCheckAttendance' component={TeacherCheckAttendance}/>
-          <Route exact path='/teacherAttendance' component={TeacherAttendance}/>
-          <Route exact path='/leaveApplication' component={LeaveApplication}/>
-          <Route exact path='/checkNoticeStudent' component={CheckNoticeStudent}/>
-          <Route exact path='/noticeAdmin' component={NoticeAdmin}/>
-          <Route exact path='/createNoticeAdmin' component={CreateNoticeAdmin}/>
-          <Route exact path='/checkNoticeAdmin' component={CheckNoticeAdmin}/>
-          <Route exact path='/editNotice/:sno' component={EditNotice}/>
+          <Route exact path='/teacherAttendance' render={() => props.currentUser ? <TeacherAttendance />:<Homepage/>}/>
+          <Route exact path='/leaveApplication' render={() => props.currentUser ? <LeaveApplication />:<Homepage/>}/>
+          <Route exact path='/checkNoticeStudent' render={() => props.currentUser ? <CheckNoticeStudent />:<Homepage/>}/>
+          <Route exact path='/noticeAdmin' render={() => props.currentUser ? <NoticeAdmin />:<Homepage/>}/>
+          <Route exact path='/createNoticeAdmin' render={() => props.currentUser ? <CreateNoticeAdmin />:<Homepage/>}/>
+          <Route exact path='/checkNoticeAdmin' render={() => props.currentUser ? <CheckNoticeAdmin />:<Homepage/>}/>
+          <Route exact path='/editNotice/:sno' render={() => props.currentUser ? <EditNotice />:<Homepage/>}/>
       </Switch>
       <Footer/>    
     </div>

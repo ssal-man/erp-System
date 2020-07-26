@@ -9,7 +9,13 @@
     input{
         width:500px;
         margin: 20px;
-
+    }
+    .btn{
+        height: 50px;
+        width: 200px;
+        background-color: white;
+        border-radius: 15px;
+        cursor: pointer;
     }
     .description{
         height: 100px;

@@ -52,8 +52,10 @@ class TeacherCheckAttendance extends Component{
     return(
     <div className='check-attendance'>
         <div className="headerp">   
-        <THeader/>    
-        </div>SELECT A NAME:
+        <THeader/>   
+        </div> 
+        <div className='ca-box'>
+        SELECT A NAME:
         <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
                 {
                     this.state.students.map(student=>(
@@ -83,10 +85,11 @@ class TeacherCheckAttendance extends Component{
             <option value="december">december</option>
         </select>
         </div>
+        </div>
         <div className='calender'>
             {
                 this.state.details.length===0?
-                <div>Not Available</div>:
+                <div className='na'>Not Available</div>:
                 this.state.details.map(detail=>(
                     <AttendanceCard detail={detail} key={detail.createdAt}/>
                 ))

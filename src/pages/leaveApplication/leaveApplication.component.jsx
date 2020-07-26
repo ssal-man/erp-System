@@ -58,10 +58,12 @@ class LeaveApplication extends Component{
 
     render(){
         return(
-            <div className='specific'>
+            <div className='leave-app'>
              <div className="headerp">
                      <THeader/>
             </div>
+            <div className='la-fill'>   
+            Fill The Information:-
             <form>  
             <label htmlFor='students'>Name of the student:</label>
             <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
@@ -80,9 +82,11 @@ class LeaveApplication extends Component{
             <label htmlFor="changeAttendance">To:</label>
             <input type="date" id="to" name="to" className='date' onChange={this.onChangeDate}></input>
             </form>
-            <div className='ch-card'>
+            </div>
+            <div className='la-fill'>
+                Student Information:-
                 {this.state.student?
-                <div className='s-info'>
+                <div >
             <span className='ch-name'>Name:{this.state.student.displayName}</span>
                 <span className='ch-rollNo'>Roll number:{this.state.student.rollNo}</span>
                 <span className='ch-admsnNo'>Admission No.:{this.state.student.admissionNo}</span>

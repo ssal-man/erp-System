@@ -49,6 +49,7 @@ class CreateNotice extends Component{
                 <div className="headerp">
                      <THeader/>
                  </div>
+                 <div className='la-fill'>
                 <form onSubmit={this.onSubmitHandle}>
                     <label htmlFor='title'>Title:</label>
                     <input type='text' id='title' name='heading' onChange={this.onChangeHandle}/>
@@ -56,8 +57,9 @@ class CreateNotice extends Component{
                     <textarea  id='description' name='description' className='description' onChange={this.onChangeHandle}/>
                     <label htmlFor='file'>Upload File:</label>
                     <input type='file' id='file' name='file'onChange={this.onChangeFile}/>
-                    <input type='submit'/>
+                    <input type='submit'className='btn'/>
                 </form>
+                </div>
             </div>
         )
     }

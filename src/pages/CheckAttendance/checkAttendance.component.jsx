@@ -71,7 +71,7 @@ class CheckAttendance extends Component{
         <div className='calender'>
             {
                 this.state.details.length===0?
-                <div>Not Available</div>:
+                <div className='na'>Not Available</div>:
                 this.state.details.map(detail=>(
                     <AttendanceCard detail={detail} key={detail.createdAt}/>
                 ))

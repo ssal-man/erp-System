@@ -44,7 +44,7 @@ function App(props) {
           <Route exact path='/createNotice' render={() => props.currentUser ? <CreateNotice />:<Homepage/>}/>
           <Route exact path='/checkNotice' render={() => props.currentUser ? <CheckNotice />:<Homepage/>}/>
           <Route exact path='/noticeTeacher' render={() => props.currentUser ? <NoticeTeacher />:<Homepage/>}/>
-          <Route exact path='/teacherCheckAttendance' component={TeacherCheckAttendance}/>
+          <Route exact path='/teacherCheckAttendance' render={() => props.currentUser ? <TeacherCheckAttendance />:<Homepage/>}/>
           <Route exact path='/teacherAttendance' render={() => props.currentUser ? <TeacherAttendance />:<Homepage/>}/>
           <Route exact path='/leaveApplication' render={() => props.currentUser ? <LeaveApplication />:<Homepage/>}/>
           <Route exact path='/checkNoticeStudent' render={() => props.currentUser ? <CheckNoticeStudent />:<Homepage/>}/>

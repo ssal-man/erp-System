@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './noticeTeacher.style.scss';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import THeader from '../../components/tHeader/tHeader.component';
+import { withRouter } from 'react-router-dom';
 
 class NoticeTeacher extends Component{
         componentDidMount(){
@@ -30,4 +31,4 @@ class NoticeTeacher extends Component{
         }
 }
 
-export default NoticeTeacher;
+export default withRouter(NoticeTeacher);

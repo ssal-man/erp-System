@@ -1,18 +1,22 @@
 .homepage{
     padding: 150px;
     margin-top: 50px;
+  
 }
 
 .homepage-alert{
     width: auto;
     height: 506px;
-    background-color: #393E46;
+    background-color:#ebebeb;
     border-radius: 19px;
+    border-style: solid;
     font-size:16px;
-    
+    text-decoration: underline;
+    text-decoration-color:black;
+
     .alert{
         text-align: center;
-        color: white;
+        color: black;
         font-size: 40px;
         padding: 20px;
         padding-top: 80px;
@@ -35,6 +39,7 @@ button{
     font-size: 24px;
     cursor: pointer;
     white-space: normal;
+    box-shadow: 5px 5px black;
 }
 
 @media screen and (max-width:1000px){

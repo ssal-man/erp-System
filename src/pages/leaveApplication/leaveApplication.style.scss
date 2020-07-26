@@ -1,0 +1,30 @@
+.leave-app{
+    margin-top: 150px;
+}
+.la-fill{
+    margin-top: 20px;
+    border-style: solid;
+    border-color: black;
+    background-color: #ebebeb;
+    width:900px;
+    margin-left: 25%;
+    border-radius: 15px;
+    padding:20px;
+    text-align: center;
+    font-size:25px;
+}
+
+@media screen and (max-width:1000px){
+    .la-fill{
+        margin-top: 20px;
+        border-style: solid;
+        border-color: black;
+        background-color: #ebebeb;
+        width:300px;
+        margin-left: 5%;
+        border-radius: 15px;
+        padding:20px;
+        text-align: center;
+        font-size:15px;
+    }
+}

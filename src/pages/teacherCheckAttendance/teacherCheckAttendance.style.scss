@@ -6,14 +6,35 @@
     .months{
         font-size: 25px;
         margin: 10px;
+        
     }
     .calender{
         display: grid;
       grid-template-columns: repeat(auto-fill,minmax(300px,4fr));
       grid-template-rows: 4fr;
-      
+      text-align: center;
+
     }
-    .dropdown{
-        margin-top: 150px;
+    
+}
+.ca-box{
+    border-style: solid;
+    width: 900px;
+    border-color: black;
+    border-radius:15px;
+    padding: 10px;
+    background-color:#ebebeb;
+    margin-left: 25%;
+}
+
+@media screen and (max-width:1000px){
+    .ca-box{
+        border-style: solid;
+        width: 250px;
+        border-color: black;
+        border-radius:15px;
+        padding: 10px;
+        background-color:#ebebeb;
+        margin-left: 15%;
     }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './teacherAttendance.style.scss';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import THeader from '../../components/tHeader/tHeader.component';
+import { withRouter } from 'react-router-dom';
 
 class TeacherAttendance extends Component{
         componentDidMount(){
@@ -31,4 +32,4 @@ class TeacherAttendance extends Component{
         }
 }
 
-export default TeacherAttendance;
+export default withRouter(TeacherAttendance);

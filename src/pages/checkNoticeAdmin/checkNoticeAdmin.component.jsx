@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './checkNotice.style.scss';
+import './checkNoticeAdmin.style.scss';
 import { getNotices } from '../../firebase/firebase.utils';
 import firebase from 'firebase';
-import THeader from '../../components/tHeader/tHeader.component';
+import AHeader from '../../components/aHeader/aHeader.component';
 
-class CheckNotice extends Component{
+class CheckNoticeAdmin extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -41,7 +41,7 @@ class CheckNotice extends Component{
         return(
             <div className='notices'>
                 <div className="headerp">
-                     <THeader/>
+                     <AHeader/>
                 </div>
                 {
                     this.state.firedoc.length===0?
@@ -63,4 +63,4 @@ class CheckNotice extends Component{
     }
 }
 
-export default CheckNotice;
+export default CheckNoticeAdmin;

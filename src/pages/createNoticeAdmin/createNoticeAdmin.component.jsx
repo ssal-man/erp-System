@@ -1,11 +1,11 @@
 import React from 'react';
-import './createNotice.style.scss';
+import './createNoticeAdmin.style.scss';
 import { Component } from 'react';
-import THeader from '../../components/tHeader/tHeader.component';
+import AHeader from '../../components/aHeader/aHeader.component';
 import { writeNotice } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 
-class CreateNotice extends Component{
+class CreateNoticeAdmin extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -47,7 +47,7 @@ class CreateNotice extends Component{
         return(
             <div className='notice-form'>
                 <div className="headerp">
-                     <THeader/>
+                     <AHeader/>
                  </div>
                 <form onSubmit={this.onSubmitHandle}>
                     <label htmlFor='title'>Title:</label>
@@ -67,4 +67,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(CreateNotice);
+export default connect(mapStateToProps)(CreateNoticeAdmin);

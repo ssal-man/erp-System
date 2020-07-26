@@ -13,7 +13,7 @@ const aHeader = () =>{
             <ul className='navlinks'>
                 <Link to='/adminHome'><li>Student's Profile</li></Link>
                 <Link to='/changeAttendance'><li>Attendance</li></Link>
-                <li>Notice Board</li>
+                <Link to='/noticeAdmin'><li>Notice Board</li></Link>
                 {/* <li>Examination</li>
                 <li>Fee Payment</li>
                 <li>Contact Us</li> */}

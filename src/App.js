@@ -20,6 +20,10 @@ import NoticeTeacher from './pages/noticeTeacher/noticeTeacher.component';
 import TeacherCheckAttendance from './pages/teacherCheckAttendance/teacherCheckAttendance.component';
 import TeacherAttendance from './pages/teacherAttendance/teacherAttendance.component';
 import LeaveApplication from './pages/leaveApplication/leaveApplication.component';
+import CheckNoticeStudent from './pages/checkNoticeStudent/checkNoticeStudent.component';
+import NoticeAdmin from './pages/noticeAdmin/noticeAdmin.component';
+import CreateNoticeAdmin from './pages/createNoticeAdmin/createNoticeAdmin.component';
+import CheckNoticeAdmin from './pages/checkNoticeAdmin/checkNoticeAdmin.component';
 
 function App(props) {
   return (
@@ -42,6 +46,10 @@ function App(props) {
           <Route exact path='/teacherCheckAttendance' component={TeacherCheckAttendance}/>
           <Route exact path='/teacherAttendance' component={TeacherAttendance}/>
           <Route exact path='/leaveApplication' component={LeaveApplication}/>
+          <Route exact path='/checkNoticeStudent' component={CheckNoticeStudent}/>
+          <Route exact path='/noticeAdmin' component={NoticeAdmin}/>
+          <Route exact path='/createNoticeAdmin' component={CreateNoticeAdmin}/>
+          <Route exact path='/checkNoticeAdmin' component={CheckNoticeAdmin}/>
       </Switch>
       <Footer/>    
     </div>

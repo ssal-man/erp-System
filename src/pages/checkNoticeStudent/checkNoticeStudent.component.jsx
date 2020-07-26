@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './checkNotice.style.scss';
+import './checkNoticeStudent.style.scss';
+import PHeader from '../../components/pHeader/pHeader.component';
 import { getNotices } from '../../firebase/firebase.utils';
 import firebase from 'firebase';
-import THeader from '../../components/tHeader/tHeader.component';
 
-class CheckNotice extends Component{
+class CheckNoticeStudent extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -34,20 +34,21 @@ class CheckNotice extends Component{
                 }catch(error){}
                 docs.push(docUrl)
         })
-        setTimeout(()=>{this.setState({firedoc:docs})},2000)
+        setTimeout(()=>{this.setState({firedoc:docs})},1000)
     }
     render(){
         var i=0
         return(
             <div className='notices'>
+                
                 <div className="headerp">
-                     <THeader/>
+                     <PHeader/>
                 </div>
                 {
                     this.state.firedoc.length===0?
                     <div>Loading</div>:
                     this.state.notices.map(notice=>(
-                        <div className='notice' key={notice.craetedAt.seconds}>
+                        <div className='notice' key={notice.email}>
                             <span>Notice#{`${i+1}`}</span>
                             <span>Title:{notice.heading}</span>
                             <span>Description:{notice.description}</span>
@@ -63,4 +64,4 @@ class CheckNotice extends Component{
     }
 }
 
-export default CheckNotice;
+export default CheckNoticeStudent;

@@ -426,3 +426,25 @@ const getSno =async () =>{
     const doc = await firestore.doc("noticesSno/hsno").get()
     return doc.data().sno
 }
+
+export const deleteNotice = async (sno) =>{
+    var id;
+    const snap = await firestore.collection("notices").get()
+    snap.forEach(doc=>{
+        if(sno===doc.data().sno){
+            id = doc.id
+        }
+    })
+    await firestore.collection("notices").doc(id).delete()
+}
+
+export const getSNotice = async (sno) =>{
+    var notice;
+    const snap = await firestore.collection("notices").get()
+    snap.forEach(doc=>{
+        if(sno===doc.data().sno){
+            notice = doc.data()
+        }
+    })
+    return notice;
+}

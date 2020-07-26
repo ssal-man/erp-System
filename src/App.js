@@ -24,6 +24,7 @@ import CheckNoticeStudent from './pages/checkNoticeStudent/checkNoticeStudent.co
 import NoticeAdmin from './pages/noticeAdmin/noticeAdmin.component';
 import CreateNoticeAdmin from './pages/createNoticeAdmin/createNoticeAdmin.component';
 import CheckNoticeAdmin from './pages/checkNoticeAdmin/checkNoticeAdmin.component';
+import EditNotice from './pages/editNotice/editNotice.component';
 
 function App(props) {
   return (
@@ -50,6 +51,7 @@ function App(props) {
           <Route exact path='/noticeAdmin' component={NoticeAdmin}/>
           <Route exact path='/createNoticeAdmin' component={CreateNoticeAdmin}/>
           <Route exact path='/checkNoticeAdmin' component={CheckNoticeAdmin}/>
+          <Route exact path='/editNotice/:sno' component={EditNotice}/>
       </Switch>
       <Footer/>    
     </div>

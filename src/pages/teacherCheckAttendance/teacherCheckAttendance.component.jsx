@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './teacherCheckAttendance.style.scss';
-import PHeader from '../../components/pHeader/pHeader.component';
+import THeader from '../../components/tHeader/tHeader.component';
 import { getAttendance, getStudentByClass, changeSAttendance } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { AttendanceCard } from '../../components/attendanceCard/attendanceCard.component';
@@ -52,7 +52,7 @@ class TeacherCheckAttendance extends Component{
     return(
     <div className='check-attendance'>
         <div className="headerp">   
-        <PHeader/>    
+        <THeader/>    
         </div>SELECT A NAME:
         <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
                 {

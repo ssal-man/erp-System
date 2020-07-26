@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './checkNoticeAdmin.style.scss';
-import { getNotices } from '../../firebase/firebase.utils';
+import { getNotices, deleteNotice } from '../../firebase/firebase.utils';
 import firebase from 'firebase';
 import AHeader from '../../components/aHeader/aHeader.component';
+import CustomButton from '../../components/custombutton/custombutton.component';
+
 
 class CheckNoticeAdmin extends Component{
     constructor(props){
@@ -49,6 +51,10 @@ class CheckNoticeAdmin extends Component{
                     this.state.notices.map(notice=>(
                         <div className='notice' key={notice.craetedAt.seconds}>
                             <span>Notice#{`${notice.sno}`}</span>
+                            <div className='c-display'>
+                            <CustomButton onClick={()=>{this.props.history.push(`/editNotice/${notice.sno}`)}}>Edit</CustomButton>
+                            <CustomButton onClick={()=>{deleteNotice(notice.sno)}}>Delete</CustomButton>
+                            </div>
                             <span>Title:{notice.heading}</span>
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>

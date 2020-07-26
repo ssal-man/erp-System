@@ -48,7 +48,7 @@ class CheckNoticeAdmin extends Component{
                     <div>Loading</div>:
                     this.state.notices.map(notice=>(
                         <div className='notice' key={notice.craetedAt.seconds}>
-                            <span>Notice#{`${i+1}`}</span>
+                            <span>Notice#{`${notice.sno}`}</span>
                             <span>Title:{notice.heading}</span>
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>

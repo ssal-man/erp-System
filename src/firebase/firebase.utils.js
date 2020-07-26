@@ -299,18 +299,23 @@ export const addFromAndTo = async (admissionNo,from,to) =>{
     console.log(snap1)
 }
 
-export const writeNotice =  (file,email,heading,description)=>{
+export const writeNotice =async  (file,email,heading,description)=>{
     var storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(file.name);
     fileRef.put(file).then(()=>{
         console.log("uploaded")
     })
+    const sno = await getSno()
     firestore.collection('notices').add({
         heading,
         description,
         craetedAt:new Date(),
         doc:file.name,
-        email
+        email,
+        sno:sno+1
+    })
+    await firestore.doc("noticesSno/hsno").update({
+        sno:sno+1
     })
 }
 
@@ -415,4 +420,9 @@ export const getStudentByClassFilter = async(Class) =>{
         }
     })
     return students
+}
+
+const getSno =async () =>{
+    const doc = await firestore.doc("noticesSno/hsno").get()
+    return doc.data().sno
 }

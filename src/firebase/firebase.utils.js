@@ -262,7 +262,6 @@ export const writeSAttendance = async (present,dateStr,admissionNo)=>{
 }
 
 export const leaveSApplication = async (present,dateStr,admissionNo)=>{
-    console.log(dateStr)
     const snap = await firestore.collection(`students`).get();
     var id;
     snap.forEach(async doc => {
@@ -270,7 +269,6 @@ export const leaveSApplication = async (present,dateStr,admissionNo)=>{
             id=(doc.id)
         }
     })
-    console.log(dateStr)
     var docIddate =dateStr.getDate()
     var docIdmon=`${month_name(dateStr.getMonth())}`
     const ref=firestore.collection('students').doc(id).collection('Attendance').doc(docIdmon+docIddate)
@@ -286,6 +284,20 @@ export const leaveSApplication = async (present,dateStr,admissionNo)=>{
     }
 }
 
+export const addFromAndTo = async (admissionNo,from,to) =>{
+    const snap = await firestore.collection(`students`).get();
+    var id;
+    snap.forEach(async doc => {
+        if (admissionNo === doc.data().admissionNo) {
+            id=(doc.id)
+        }
+    })
+    const snap1 = await firestore.collection("students").doc(id).update({
+        from,
+        to
+    })
+    console.log(snap1)
+}
 
 export const writeNotice =  (file,email,heading,description)=>{
     var storageRef = firebase.storage().ref();
@@ -382,4 +394,25 @@ export const checker = async (email) =>{
     else{
         return false
     }
+}
+
+export const getStudentByClassFilter = async(Class) =>{
+    var today = new Date()
+    var tf = new Date(1970, 0, 1);
+    var tt = new Date(1970, 0, 1);
+    var students=[]
+    const ref = firestore.collection(`students`).where("Class","==",Class)
+    const snap = await ref.get()
+    snap.forEach(doc=>{
+        var data = doc.data()
+        if('from' in data){
+        tf.setTime(data.from.seconds*1000)
+        tt.setTime(data.to.seconds*1000)
+        if(today<tf || today>tt){
+        students.push(data)
+        }}else{
+        students.push(data)
+        }
+    })
+    return students
 }

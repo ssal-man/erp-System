@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './leaveApplication.style.scss';
-import { getStudentByClass, changeSAttendance, leaveSApplication } from '../../firebase/firebase.utils';
+import { getStudentByClass, changeSAttendance, leaveSApplication, addFromAndTo } from '../../firebase/firebase.utils';
 import THeader from '../../components/tHeader/tHeader.component';
 import { connect } from 'react-redux';
 import CustomButton from '../../components/custombutton/custombutton.component';
@@ -12,7 +12,9 @@ class LeaveApplication extends Component{
         this.state={
             student:{},
             students:[],
-            gap:0
+            gap:0,
+            from:new Date(),
+            to:new Date()
         }
     }
     componentDidMount = async () =>{
@@ -37,7 +39,8 @@ class LeaveApplication extends Component{
     onHandleSubmit=async ()=>{
         const from = new Date(document.getElementById("from").value)
         var i;
-    
+        await addFromAndTo(document.getElementById('students').options[document.getElementById('students').selectedIndex].value,this.state.from
+        ,this.state.to)
         for(i=0;i<this.state.gap;i++){
             await leaveSApplication(true,from,document.getElementById('students').options[document.getElementById('students').selectedIndex].value)
             from.setDate(from.getDate()+1)
@@ -45,9 +48,11 @@ class LeaveApplication extends Component{
     }
 
     onChangeDate = () =>{
-        const from = new Date(document.getElementById("from").value)
-        const to = new Date(document.getElementById("to").value)
-        this.setState({gap:(((to.getTime()-from.getTime())/(1000*3600*24))+1)})
+         this.setState({from : new Date(document.getElementById("from").value)},()=>{
+             this.setState({to : new Date(document.getElementById("to").value)},()=>{
+                 this.setState({gap:(((this.state.to.getTime()-this.state.from.getTime())/(1000*3600*24))+1)})})
+        })
+        
     }
 
     render(){

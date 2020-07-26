@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './giveAttendance.style.scss';
-import { getStudentByClass, writeAttendance, updateDays, emailDetails, checker } from '../../firebase/firebase.utils';
+import {  writeAttendance, updateDays, emailDetails, checker, getStudentByClassFilter } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import THeader from '../../components/tHeader/tHeader.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
@@ -15,7 +15,7 @@ class GiveAttednance extends Component{
     }
 
     componentDidMount= async ()=>{
-        this.setState({students:await getStudentByClass(this.props.currentUser.class)})
+        this.setState({students:await getStudentByClassFilter(this.props.currentUser.class)})
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 

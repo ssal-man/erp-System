@@ -25,7 +25,7 @@ span{
 }
 .pdf{
     justify-content: center;
-    object{
+    iframe{
         height: 500px;
         width: 500px;
     }
@@ -34,7 +34,7 @@ span{
 @media screen and (max-width:1000px){
     .pdf{
         justify-content: center;
-        embed{
+        iframe{
             height: 500px;
             width: 300px;
         }

@@ -53,7 +53,7 @@ class CheckNotice extends Component{
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>
                             <div className='pdf'>
-                            <object data={`${this.state.firedoc[i++]}`} aria-labelledby=''></object>          
+                            <iframe src={`${this.state.firedoc[i++]}`} title='iframe'></iframe>          
                         </div>
                         </div>
                     ))

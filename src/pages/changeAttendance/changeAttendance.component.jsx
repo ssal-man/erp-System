@@ -57,8 +57,10 @@ class ChangeAttendance extends Component{
         return(
             <div className='specific'>
              <div className="headerp">
-                     <AHeader/>
+                     <AHeader/> 
             </div>
+            Fill the Information:-
+            <div className='chng-a-fill'>
             <form>  
             <label htmlFor='students'>Name of the student:</label>
             <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
@@ -73,7 +75,9 @@ class ChangeAttendance extends Component{
             <label htmlFor="changeAttendance">Select the date:</label>
             <input type="date" id="changeAttendance" name="changeAttendance" className='date'></input>
             </form>
-            <div className='ch-card'>
+            </div>
+            Student's Information:-
+            <div className='chng-a-fill'>
                 {this.state.student?
                 <div className='s-info'>
             <span className='ch-name'>Name:{this.state.student.displayName}</span>
@@ -89,7 +93,7 @@ class ChangeAttendance extends Component{
                     <span className="checkmark"></span>
                 </label>
             </div>
-            <CustomButton onClick={this.onHandleSubmit}>Submit</CustomButton>
+            <CustomButton onClick={this.onHandleSubmit} className='c-btn'>Submit</CustomButton>
             </div>
         )
     }

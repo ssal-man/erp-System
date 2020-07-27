@@ -4,6 +4,7 @@ import { Component } from 'react';
 import AHeader from '../../components/aHeader/aHeader.component';
 import { writeNotice, getSNotice } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class EditNotice extends Component{
     constructor(props){
@@ -54,6 +55,7 @@ class EditNotice extends Component{
                 <div className="headerp">
                      <AHeader/>
                  </div>
+                 <div className='la-fill'>
                 <form onSubmit={this.onSubmitHandle}>
                     <label htmlFor='title'>Title:</label>
                     <input type='text' id='title' name='heading' onChange={this.onChangeHandle}/>
@@ -61,8 +63,9 @@ class EditNotice extends Component{
                     <textarea  id='description' name='description' className='description' onChange={this.onChangeHandle}/>
                     <label htmlFor='file'>Upload File:</label>
                     <input type='file' id='file' name='file'onChange={this.onChangeFile}/>
-                    <input type='submit'/>
-                </form>
+                    <input type='submit'className='btn'/>
+                </form>    
+                </div>
             </div>
         )
     }
@@ -72,4 +75,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(EditNotice);
+export default withRouter(connect(mapStateToProps)(EditNotice));

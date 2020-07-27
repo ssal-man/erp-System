@@ -4,6 +4,7 @@ import { getNotices, deleteNotice } from '../../firebase/firebase.utils';
 import firebase from 'firebase';
 import AHeader from '../../components/aHeader/aHeader.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
+import { withRouter } from 'react-router-dom';
 
 
 class CheckNoticeAdmin extends Component{
@@ -70,4 +71,4 @@ class CheckNoticeAdmin extends Component{
     }
 }
 
-export default CheckNoticeAdmin;
+export default withRouter(CheckNoticeAdmin);

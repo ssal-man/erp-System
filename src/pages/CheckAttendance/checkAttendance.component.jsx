@@ -48,6 +48,7 @@ class CheckAttendance extends Component{
         <div className="headerp">   
         <PHeader/>    
         </div>
+        <div className='ca-box'>
         <div className='percentage'>
             Your Attendance Till Date is :{(this.props.currentUser.presentDays/this.props.currentUser.totalDays * 100).toFixed(2)}%
         </div>
@@ -67,6 +68,7 @@ class CheckAttendance extends Component{
             <option value="november">november</option>
             <option value="december">december</option>
         </select>
+        </div>
         </div>
         <div className='calender'>
             {

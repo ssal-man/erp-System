@@ -4,6 +4,7 @@ import { Component } from 'react';
 import THeader from '../../components/tHeader/tHeader.component';
 import { writeNotice } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class CreateNotice extends Component{
     constructor(props){
@@ -69,4 +70,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(CreateNotice);
+  export default withRouter(connect(mapStateToProps)(CreateNotice));

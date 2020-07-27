@@ -5,8 +5,7 @@ import CustomButton from '../../components/custombutton/custombutton.component';
 import { getTeacher } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.action';
-// import { Link } from 'react-router-dom';
-// import { auth } from '../../firebase/firebase.utils';
+
 
 class TeacherSignIn extends Component {
     constructor(props) {

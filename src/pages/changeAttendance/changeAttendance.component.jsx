@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getAllStudents, changeSAttendance, writeSAttendance, updateDays } from '../../firebase/firebase.utils';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import AHeader from '../../components/aHeader/aHeader.component';
+import { withRouter } from 'react-router-dom';
 
 class ChangeAttendance extends Component{
     constructor(props){
@@ -104,4 +105,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(ChangeAttendance);
+export default withRouter(connect(mapStateToProps)(ChangeAttendance));

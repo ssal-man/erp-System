@@ -34,7 +34,7 @@ class CheckNoticeStudent extends Component{
                 }catch(error){}
                 docs.push(docUrl)
         })
-        setTimeout(()=>{this.setState({firedoc:docs})},1000)
+        setTimeout(()=>{this.setState({firedoc:docs})},2500)
     }
     render(){
         var i=0

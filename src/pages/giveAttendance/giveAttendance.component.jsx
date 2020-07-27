@@ -4,6 +4,7 @@ import {  writeAttendance, updateDays, emailDetails, checker, getStudentByClassF
 import { connect } from 'react-redux';
 import THeader from '../../components/tHeader/tHeader.component';
 import CustomButton from '../../components/custombutton/custombutton.component';
+import { withRouter } from 'react-router-dom';
 
 const today = new Date();
 class GiveAttednance extends Component{
@@ -109,4 +110,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(GiveAttednance);
+export default withRouter(connect(mapStateToProps)(GiveAttednance));

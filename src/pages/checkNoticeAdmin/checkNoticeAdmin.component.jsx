@@ -37,7 +37,7 @@ class CheckNoticeAdmin extends Component{
                 }catch(error){}
                 docs.push(docUrl)
         })
-        setTimeout(()=>{this.setState({firedoc:docs})},2000)
+        setTimeout(()=>{this.setState({firedoc:docs})},2500)
     }
     render(){
         var i=0

@@ -4,6 +4,7 @@ import { getStudentByClass, changeSAttendance, leaveSApplication, addFromAndTo }
 import THeader from '../../components/tHeader/tHeader.component';
 import { connect } from 'react-redux';
 import CustomButton from '../../components/custombutton/custombutton.component';
+import { withRouter } from 'react-router-dom';
 
 
 class LeaveApplication extends Component{
@@ -104,4 +105,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
   })
 
-export default connect(mapStateToProps)(LeaveApplication);
+export default withRouter(connect(mapStateToProps)(LeaveApplication));

@@ -61,7 +61,7 @@ class CheckNoticeAdmin extends Component{
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>
                             <div className='pdf'>
-                            <embed src={`${this.state.firedoc[i++]}`}  />
+                            <object data={`${this.state.firedoc[i++]}`} aria-labelledby=''></object>
                             </div>
                         </div>
                     ))

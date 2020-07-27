@@ -54,7 +54,7 @@ class CheckNoticeStudent extends Component{
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>
                             <div className='pdf'>
-                            <embed src={`${this.state.firedoc[i++]}`}  />
+                            <objecy data={`${this.state.firedoc[i++]}`} aria-labelledby=''></objecy>
                             </div>
                         </div>
                     ))

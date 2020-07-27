@@ -37,6 +37,7 @@ class CheckNotice extends Component{
         setTimeout(()=>{this.setState({firedoc:docs})},2500)
     }
     render(){
+        var i=0
         return(
             <div className='notices'>
                 <div className="headerp">
@@ -52,8 +53,8 @@ class CheckNotice extends Component{
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>
                             <div className='pdf'>
-                            <embed src={`${this.state.firedoc[notice.sno-1]}`}  />
-                            </div>
+                            <object data={`${this.state.firedoc[i++]}`} aria-labelledby=''></object>          
+                        </div>
                         </div>
                     ))
                 }

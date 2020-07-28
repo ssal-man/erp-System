@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './leaveApplication.style.scss';
-import { getStudentByClass, changeSAttendance, leaveSApplication, addFromAndTo } from '../../firebase/firebase.utils';
+import {  leaveSApplication, addFromAndTo } from '../../firebase/firebase.utils';
 import THeader from '../../components/tHeader/tHeader.component';
 import { connect } from 'react-redux';
 import CustomButton from '../../components/custombutton/custombutton.component';
@@ -11,15 +11,12 @@ class LeaveApplication extends Component{
     constructor(props){
         super(props);
         this.state={
-            student:{},
-            students:[],
             gap:0,
             from:new Date(),
             to:new Date()
         }
     }
     componentDidMount = async () =>{
-        this.setState({students:await getStudentByClass(this.props.currentUser.class)})
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 
@@ -30,20 +27,15 @@ class LeaveApplication extends Component{
 
         navLinks.addEventListener('click',()=>{
         navLinks.classList.toggle("open")});
-        this.onHandleChange()
-    }
-
-    onHandleChange=async ()=>{
-        this.setState({student:await changeSAttendance(document.getElementById('students').options[document.getElementById('students').selectedIndex].text)})
     }
 
     onHandleSubmit=async ()=>{
         const from = new Date(document.getElementById("from").value)
         var i;
-        await addFromAndTo(document.getElementById('students').options[document.getElementById('students').selectedIndex].value,this.state.from
+        await addFromAndTo(this.props.currentUser.admissionNo,this.state.from
         ,this.state.to)
         for(i=0;i<this.state.gap;i++){
-            await leaveSApplication(true,from,document.getElementById('students').options[document.getElementById('students').selectedIndex].value)
+            await leaveSApplication(true,from,this.props.currentUser.admissionNo)
             from.setDate(from.getDate()+1)
         }
         this.props.history.push('/teacherHomepage')
@@ -65,16 +57,8 @@ class LeaveApplication extends Component{
             </div>
             <div className='la-fill'>   
             Fill The Information:-
-            <form>  
-            <label htmlFor='students'>Name of the student:</label>
-            <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
-                {
-                    this.state.students.map(student=>(
-                    <option value={`${student.admissionNo}`} key={student.admissionNo} >{student.displayName}</option>
-                    ))
-                }
-            </select>
-            </form> 
+            <label htmlFor='reason'>Describe your reason</label>
+            <textArea id='reason'></textArea>
             <form action="/action_page.php">
             <label htmlFor="changeAttendance">From:</label>
             <input type="date" id="from" name="from" className='date'></input>
@@ -86,12 +70,11 @@ class LeaveApplication extends Component{
             </div>
             <div className='la-fill'>
                 Student Information:-
-                {this.state.student?
                 <div >
-            <span className='ch-name'>Name:{this.state.student.displayName}</span>
-                <span className='ch-rollNo'>Roll number:{this.state.student.rollNo}</span>
-                <span className='ch-admsnNo'>Admission No.:{this.state.student.admissionNo}</span>
-                </div>:null}
+            <span className='ch-name'>Name:{this.props.currentUser.displayName}</span>
+                <span className='ch-rollNo'>Roll number:{this.props.currentUser.rollNo}</span>
+                <span className='ch-admsnNo'>Admission No.:{this.props.currentUser.admissionNo}</span>
+                </div>
                 <div>Leave Application for {`${this.state.gap}`} Days</div>
             </div>
             <CustomButton onClick={this.onHandleSubmit}>Submit</CustomButton>

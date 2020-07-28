@@ -12,6 +12,13 @@
     padding:20px;
     text-align: center;
     font-size:25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    textArea{
+        width:500px
+    }
 }
 
 @media screen and (max-width:1000px){
@@ -26,5 +33,8 @@
         padding:20px;
         text-align: center;
         font-size:15px;
+        textArea{
+            width:300px
+        }
     }
 }

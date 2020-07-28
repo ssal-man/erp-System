@@ -16,7 +16,7 @@ const pHeader = () =>{
                 <Link to='/checkNoticeStudent'><li>Notice Board</li></Link>
                 <li>Examination</li>
                 <li>Fee Payment</li>
-                <li>Contact Us</li>
+                <Link to='/leaveApplication'><li>Apply for leave</li></Link>
             </ul>
         </div>
     )

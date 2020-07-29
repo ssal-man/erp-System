@@ -482,6 +482,7 @@ export const getNotificationsDd = async (status)=>{
             }
         })
     }
+    console.log("working")  
     return notifications
 }
 

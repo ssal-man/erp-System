@@ -9,7 +9,7 @@ class AlertNb extends Component{
     constructor(props){
         super(props)
         this.state={
-            notifications:[]
+            notifications:[],
         }
     }
 
@@ -17,12 +17,8 @@ class AlertNb extends Component{
         this.setState({notifications:await getNotificationsDd(this.props.currentUser.status)})
     }
 
-    loadAlert=async()=>{
-        this.setState({notifications:await getNotificationsDd(this.props.currentUser.status)})
-    }
-
     render(){
-        this.loadAlert()
+
         return(
         <div >
             {this.state.notifications.length===0?null:

@@ -11,7 +11,8 @@ class Banner extends Component{
   constructor(props) {
     super(props);
     this.state={
-      hidden:true
+      hidden:true,
+      vanish:'false'
     }
   }
   
@@ -22,9 +23,10 @@ class Banner extends Component{
             <div className='banr'>ERP SYSTEM</div>
             {currentUser?<div className='banner-props'>
               {this.state.hidden?null:<NotificationDropdown className='n-dd' />}
-            <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a><AlertNb/><NotificationBell className='svg-nb' onClick={async()=>{
+            <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a><div className={`${this.state.vanish}`}><AlertNb /></div><NotificationBell className='svg-nb' onClick={async()=>{
                 this.setState({hidden:!this.state.hidden})
                  await readMsg()
+                 this.setState({vanish:'true'})
               }}/></div>:null}
             
         </div>

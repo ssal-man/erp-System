@@ -11,6 +11,9 @@
     position: fixed;
     top:0%;
     z-index: 4;
+    .true{
+        display: none;
+    }
     .sign-out{
         cursor: pointer;
         font-size: 20px;

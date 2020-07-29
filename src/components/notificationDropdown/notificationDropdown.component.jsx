@@ -4,7 +4,7 @@ import { getNotificationsDd } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
- class NotificationDropdown extends Component{
+class NotificationDropdown extends Component{
      constructor(props){
          super(props)
          this.state={
@@ -18,10 +18,10 @@ import { withRouter } from 'react-router-dom';
     render(){
     return(
         <div className='dd'>
-            {this.state.notifications?
-            this.state.notifications.map(notification=>(
+            {this.state.notifications.length!==0?<div>
+            {this.state.notifications.map(notification=>(
             <div key={notification}><div className='n-dd'>{notification}</div>
-            <hr/></div>)):<div>No new notifications</div>}
+            <hr/></div>))}</div>:<div className='n-dd'>No new notifications</div>}
         </div>
     )
     }

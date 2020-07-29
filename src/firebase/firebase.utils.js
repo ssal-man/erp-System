@@ -482,6 +482,14 @@ export const getNotificationsDd = async (status)=>{
             }
         })
     }
-    console.log(notifications)
     return notifications
+}
+
+export const readMsg = async () =>{
+    const snap = await firestore.collection("notifications").get()
+    snap.forEach(doc=>{
+        doc.ref.update({
+            read:true
+        })
+    })
 }

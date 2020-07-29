@@ -4,16 +4,28 @@ import { connect } from 'react-redux';
 import { removeUser } from '../../redux/user/user.action';
 import {ReactComponent as NotificationBell } from '../../assets/notification-bell.svg';
 import  NotificationDropdown  from '../notificationDropdown/notificationDropdown.component';
+import { readMsg } from '../../firebase/firebase.utils';
+import AlertNb from '../alertNb/alertNb.component';
 
 class Banner extends Component{
+  constructor(props) {
+    super(props);
+    this.state={
+      hidden:true
+    }
+  }
+  
   render(){
     const { currentUser } = this.props
     return(
         <div className='banner'>
             <div className='banr'>ERP SYSTEM</div>
             {currentUser?<div className='banner-props'>
-              <NotificationDropdown className='n-dd'/>
-            <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a><NotificationBell className='svg-nb'/></div>:null}
+              {this.state.hidden?null:<NotificationDropdown className='n-dd' />}
+            <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a><AlertNb/><NotificationBell className='svg-nb' onClick={async()=>{
+                this.setState({hidden:!this.state.hidden})
+                 await readMsg()
+              }}/></div>:null}
             
         </div>
     );

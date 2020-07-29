@@ -15,16 +15,34 @@
         cursor: pointer;
         font-size: 20px;
         z-index: 5;
+        padding-right: 35px;
+        padding-top:10px;
+        align-items: center;
     }
-    
+    .svg-nb{
+        height: 47px;
+        width: 47px;
+        cursor: pointer;
+    }
+    .banner-props{
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+    }
 }
 a{
     text-decoration: none;
     color: white;
 }
 
-// @media screen and (max-width:1000px){
-//     .banner{.sign-out{
-//         padding-left:60px;
-//     }}
-// }
+@media screen and (max-width:1000px){
+    .banner{
+        .banner-props{
+            width:50px;
+        }
+       .sign-out,a{
+           display: none;
+       }
+        }
+}
+

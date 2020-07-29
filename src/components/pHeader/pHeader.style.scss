@@ -2,6 +2,9 @@
     height: 5vh;
     background-color: #221f3b;
     z-index: 1;
+    .sign-out{
+        display:none;
+    }
     .navlinks{
         display: flex;
         list-style: none;
@@ -23,6 +26,12 @@
 
 @media screen and (max-width:1000px){
     .nav{
+        .sign-out{
+            display: flex;
+            position: fixed;
+            top:75px;
+            right:20px;
+        } 
         padding-top: 8px;
         .navlinks{
             justify-content: start;

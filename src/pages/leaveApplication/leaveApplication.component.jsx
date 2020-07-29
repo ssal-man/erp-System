@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './leaveApplication.style.scss';
-import {  leaveSApplication, addFromAndTo } from '../../firebase/firebase.utils';
+import {  leaveSApplication, addFromAndTo, pushNotificationLA, updateDays } from '../../firebase/firebase.utils';
 import THeader from '../../components/tHeader/tHeader.component';
 import { connect } from 'react-redux';
 import CustomButton from '../../components/custombutton/custombutton.component';
@@ -27,6 +27,7 @@ class LeaveApplication extends Component{
 
         navLinks.addEventListener('click',()=>{
         navLinks.classList.toggle("open")});
+        console.log(document.getElementById('reason'))
     }
 
     onHandleSubmit=async ()=>{
@@ -36,9 +37,12 @@ class LeaveApplication extends Component{
         ,this.state.to)
         for(i=0;i<this.state.gap;i++){
             await leaveSApplication(true,from,this.props.currentUser.admissionNo)
+            await updateDays(this.props.currentUser.totalDays+i+1,this.props.currentUser.presentDays+i+1,this.props.currentUser.admissionNo)
             from.setDate(from.getDate()+1)
         }
-        this.props.history.push('/teacherHomepage')
+        await pushNotificationLA(this.state.from,this.state.to,document.getElementById("reason").value,this.props.currentUser.displayName)
+        this.props.history.push('/')
+
     }
 
     onChangeDate = () =>{
@@ -58,7 +62,7 @@ class LeaveApplication extends Component{
             <div className='la-fill'>   
             Fill The Information:-
             <label htmlFor='reason'>Describe your reason</label>
-            <textArea id='reason'></textArea>
+            <input id='reason'></input>
             <form action="/action_page.php">
             <label htmlFor="changeAttendance">From:</label>
             <input type="date" id="from" name="from" className='date'></input>

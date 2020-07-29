@@ -457,3 +457,31 @@ export const getSNotice = async (sno) =>{
     })
     return notice;
 }
+
+export const pushNotificationLA = async(from,to,reason,name)=>{
+    await firestore.collection("notifications").add({
+        from,
+        to,
+        reason,
+        for:'teacher',
+        notification:`${name} has applied for a leave from 
+        ${from.getDate()} ${month_name(from.getMonth())} to ${to.getDate()} ${month_name(to.getMonth())}`
+    })
+}
+
+export const getNotificationsDd = async (status)=>{
+    const notifications=[]
+    if(status==='teacher'){
+        const snap1 =await firestore.collection('notifications').get()
+        snap1.forEach(doc=>{
+            const data=doc.data()
+            if(data.for==='teacher'){
+                if(!data.read){
+                notifications.push(data.notification)
+                }
+            }
+        })
+    }
+    console.log(notifications)
+    return notifications
+}

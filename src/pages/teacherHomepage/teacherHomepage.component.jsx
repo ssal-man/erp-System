@@ -107,10 +107,10 @@ class teacherHomepage extends Component{
       <div className="col col-2" data-label="1st period">English</div>
       <div className="col col-3" data-label="2nd period">Hindi</div>
       <div className="col col-4" data-label="3rd period">Science</div>
-      <div className="col col-5" data-label="Recess">CS</div>
-      <div className="col col-6" data-label="4th period"></div>
-      <div className="col col-7" data-label="5th period"></div>
-      <div className="col col-8" data-label="6th period"></div>
+      <div className="col col-5" data-label="4th period">CS</div>
+      <div className="col col-6" data-label="5th period"></div>
+      <div className="col col-7" data-label="6th period"></div>
+      <div className="col col-8" data-label="7th period"></div>
     </li>
   </ul>
 </div>

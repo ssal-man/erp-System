@@ -14,8 +14,10 @@ class AlertNb extends Component{
         }
     }
 
+    unsubscribe = null;
+
     componentDidMount=()=>{
-                 firestore.collection('notifications').where("for","==","teacher").onSnapshot(snapShot=>{
+                    this.unsubscribe = firestore.collection('notifications').where("for","==","teacher").onSnapshot(snapShot=>{
                     var notifications=[]
                     snapShot.forEach(doc=>{
                         const data=doc.data()
@@ -26,7 +28,9 @@ class AlertNb extends Component{
                     this.setState({notifications:notifications})
                 })       
     }
-
+    componentWillUnmount=()=>{
+        this.unsubscribe()
+    }
     render(){
 
         return(

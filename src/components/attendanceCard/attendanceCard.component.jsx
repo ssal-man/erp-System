@@ -3,7 +3,7 @@ import './attendanceCard.style.scss';
 
 export const AttendanceCard = (props) =>{
     var t = new Date(1970, 0, 1);
-    t.setSeconds(props.detail.createdAt.seconds)
+    t.setTime(props.detail.createdAt.seconds*1000)
     return(
         <div className='a-card'>
             <div className='date'>{t.getDate()}</div>

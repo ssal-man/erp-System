@@ -23,6 +23,7 @@ export const firestore = firebase.firestore();
 export const getStudent = async (admsnNo,password) => {
     var studentObject={}
     const snap = await firestore.collection('students').get()
+    var flag=0
     snap.forEach(doc => {
             const data = doc.data()
          if (data.admissionNo === admsnNo) {
@@ -30,15 +31,15 @@ export const getStudent = async (admsnNo,password) => {
                     studentObject=data
                 }
                 else{
-                    window.location.href = '/'
+                    flag=1
                     alert("Wrong Password")
-                    
-
+                    window.location.href = '/'
+                    return true       
                 }
          }
          
     })
-    if(Object.keys(studentObject).length===0){
+    if(Object.keys(studentObject).length===0&&flag===0){
         window.location.href = '/'
         alert("User doesn't exist")
 
@@ -48,6 +49,7 @@ export const getStudent = async (admsnNo,password) => {
 
 export const getTeacher = async (email,password) => {
     var teacherObject={}
+    var flag=0
     const snap = await firestore.collection('teachers').get()
     snap.forEach(doc => {
             const data = doc.data()
@@ -56,13 +58,15 @@ export const getTeacher = async (email,password) => {
                     teacherObject=data
                 }
                 else{
-                    window.location.href = '/'
+                    flag=1
                     alert("Wrong Password")
+                    window.location.href = '/'
+                    return true
                 }
          }
          
     })
-    if(Object.keys(teacherObject).length===0){
+    if(Object.keys(teacherObject).length===0&flag===0){
         window.location.href = '/'
         alert("User doesn't exist")
     }
@@ -71,6 +75,7 @@ export const getTeacher = async (email,password) => {
 
 export const getAdmin = async (email,password) => {
     var adminObject={}
+    var flag=0
     const snap = await firestore.collection('admin').get()
     snap.forEach(doc => {
             const data = doc.data()
@@ -79,13 +84,15 @@ export const getAdmin = async (email,password) => {
                     adminObject=data
                 }
                 else{
-                    window.location.href = '/'
+                    flag=1
                     alert("Wrong Password")
+                    window.location.href = '/'
+                    return true
                 }
          }
          
     })
-    if(Object.keys(adminObject).length===0){
+    if(Object.keys(adminObject).length===0&&flag===0){
         window.location.href = '/'
         alert("User doesn't exist")
     }
@@ -109,8 +116,6 @@ export const getAttendance = async (admissionNo,month) =>{
     snap1.forEach( doc => {
         detailList(doc,admissionNo,detail,month)
         })
-
-     detail.sort(compare)
      return detail
 
 }
@@ -128,14 +133,14 @@ const detailList = async (doc,admissionNo,detail,month) => {
 }
 
     
-const compare = (a,b) =>{
+export const compare = (a,b) =>{
     var t = new Date(1970, 0, 1);
     t.setTime(a.createdAt.seconds*1000)
     var f = t
     t=new Date(1970, 0, 1);
     t.setTime(b.createdAt.seconds*1000)
     var s=t
-    if(f.getDay()>s.getDay()){
+    if(f.getDate()>s.getDate()){
         return 1
     }else{
         return -1
@@ -482,7 +487,6 @@ export const getNotificationsDd = async (status)=>{
             }
         })
     }
-    console.log("working")  
     return notifications
 }
 

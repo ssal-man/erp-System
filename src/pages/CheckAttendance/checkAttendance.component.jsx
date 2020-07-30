@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './checkAttendance.style.scss';
 import PHeader from '../../components/pHeader/pHeader.component';
-import { getAttendance } from '../../firebase/firebase.utils';
+import { getAttendance, compare } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { AttendanceCard } from '../../components/attendanceCard/attendanceCard.component';
 
@@ -32,7 +32,7 @@ class CheckAttendance extends Component{
 
     loadData = async ()=>{
         const data= await getAttendance(this.props.currentUser.admissionNo,this.state.month)
-        setTimeout(()=>{this.setState({details:data})},1000)
+        setTimeout(()=>{this.setState({details:data.sort(compare)})},2000)
         
     }
 
@@ -75,7 +75,7 @@ class CheckAttendance extends Component{
                 this.state.details.length===0?
                 <div className='na'>Not Available</div>:
                 this.state.details.map(detail=>(
-                    <AttendanceCard detail={detail} key={detail.createdAt}/>
+                    <AttendanceCard detail={detail} key={detail.createdAt.seconds}/>
                 ))
 
             }

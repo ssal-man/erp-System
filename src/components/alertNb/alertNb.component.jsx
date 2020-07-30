@@ -3,7 +3,8 @@ import './alertNb.style.scss';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {ReactComponent as Alert} from '../../assets/alert.svg';
-import { getNotificationsDd } from '../../firebase/firebase.utils';
+import { firestore } from '../../firebase/firebase.utils';
+
 
 class AlertNb extends Component{
     constructor(props){
@@ -13,8 +14,17 @@ class AlertNb extends Component{
         }
     }
 
-    componentDidMount=async()=>{
-        this.setState({notifications:await getNotificationsDd(this.props.currentUser.status)})
+    componentDidMount=()=>{
+                 firestore.collection('notifications').where("for","==","teacher").onSnapshot(snapShot=>{
+                    var notifications=[]
+                    snapShot.forEach(doc=>{
+                        const data=doc.data()
+                            if(!data.read){
+                            notifications.push(data.notification)
+                            }
+                    })
+                    this.setState({notifications:notifications})
+                })       
     }
 
     render(){

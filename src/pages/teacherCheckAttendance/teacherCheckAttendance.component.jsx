@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './teacherCheckAttendance.style.scss';
 import THeader from '../../components/tHeader/tHeader.component';
-import { getAttendance, getStudentByClass, changeSAttendance } from '../../firebase/firebase.utils';
+import { getAttendance, getStudentByClass, changeSAttendance, compare } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { AttendanceCard } from '../../components/attendanceCard/attendanceCard.component';
 
@@ -35,7 +35,7 @@ class TeacherCheckAttendance extends Component{
     loadData = async ()=>{
         this.setState({student:await changeSAttendance(document.getElementById('students').options[document.getElementById('students').selectedIndex].text)})
         const data= await getAttendance(document.getElementById('students').options[document.getElementById('students').selectedIndex].value,this.state.month)
-        setTimeout(()=>{this.setState({details:data})},2000)
+        setTimeout(()=>{this.setState({details:data.sort(compare)})},2000)
     }
 
     handleChange = async ()=>{
@@ -91,7 +91,7 @@ class TeacherCheckAttendance extends Component{
                 this.state.details.length===0?
                 <div className='na'>Not Available</div>:
                 this.state.details.map(detail=>(
-                    <AttendanceCard detail={detail} key={detail.createdAt}/>
+                    <AttendanceCard detail={detail} key={detail.createdAt.seconds}/>
                 ))
 
             }

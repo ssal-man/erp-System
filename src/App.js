@@ -29,6 +29,7 @@ import StudentChangePassword from './pages/studentChangePassword/studentChangePa
 import TeacherChangePassword from './pages/teacherChangePassword/teacherChangePassword.component';
 import AdminChangePassword from './pages/adminChangePassword/adminChangePassword.component';
 import NotificationPage from './pages/notificationPage/notificationPage.component';
+import FeePayment from './pages/feePayment/feePayment.component';
 
 function App(props) {
   return (
@@ -60,6 +61,7 @@ function App(props) {
           <Route exact path='/checkNoticeAdmin' render={() => props.currentUser ? <CheckNoticeAdmin />:<Homepage/>}/>
           <Route exact path='/editNotice/:sno' render={() => props.currentUser ? <EditNotice />:<Homepage/>}/>
           <Route exact path='/notificationPage' render={() => props.currentUser ? <NotificationPage />:<Homepage/>}/>
+          <Route exact path='/feePayment' render={() => props.currentUser ? <FeePayment />:<Homepage/>}/>
       </Switch>
       <Footer/>    
     </div>

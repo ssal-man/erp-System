@@ -25,6 +25,9 @@ import NoticeAdmin from './pages/noticeAdmin/noticeAdmin.component';
 import CreateNoticeAdmin from './pages/createNoticeAdmin/createNoticeAdmin.component';
 import CheckNoticeAdmin from './pages/checkNoticeAdmin/checkNoticeAdmin.component';
 import EditNotice from './pages/editNotice/editNotice.component';
+import StudentChangePassword from './pages/studentChangePassword/studentChangePassword.component';
+import TeacherChangePassword from './pages/teacherChangePassword/teacherChangePassword.component';
+import AdminChangePassword from './pages/adminChangePassword/adminChangePassword.component';
 
 function App(props) {
   return (
@@ -36,6 +39,9 @@ function App(props) {
           <Route exact path='/parentSignIn' component={ParentSignIn}/>
           <Route exact path='/teacherSignIn' component={TeacherSignIn}/>
           <Route exact path='/adminSignIn' component={AdminSignIn}/>
+          <Route exact path='/parentChangePassword' component={StudentChangePassword}/>
+          <Route exact path='/teacherChangePassword' component={TeacherChangePassword}/>
+          <Route exact path='/adminChangePassword' component={AdminChangePassword}/>
           <Route exact path='/checkAttendance' render={() => props.currentUser ? <CheckAttendance />:<Homepage/>}/>
           <Route exact path='/teacherHomepage' render={() => props.currentUser ? <TeacherHomepage />:<Homepage/>}/>
           <Route exact path='/giveAttendance' render={() => props.currentUser ? <GiveAttendance />:<Homepage/>}/>

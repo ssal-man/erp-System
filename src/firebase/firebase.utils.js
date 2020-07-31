@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
+import Bcrypt from 'bcrypt-nodejs';
 
 
 var firebaseConfig = {
@@ -24,10 +25,10 @@ export const getStudent = async (admsnNo,password) => {
     var studentObject={}
     const snap = await firestore.collection('students').get()
     var flag=0
-    snap.forEach(doc => {
+    snap.forEach(async doc => {
             const data = doc.data()
          if (data.admissionNo === admsnNo) {
-                if(data.password===password){
+                if(Bcrypt.compareSync(password,data.password)){
                     studentObject=data
                 }
                 else{
@@ -54,7 +55,7 @@ export const getTeacher = async (email,password) => {
     snap.forEach(doc => {
             const data = doc.data()
          if (data.email === email) {
-                if(data.password===password){
+                if(Bcrypt.compareSync(password,data.password)){
                     teacherObject=data
                 }
                 else{
@@ -80,7 +81,7 @@ export const getAdmin = async (email,password) => {
     snap.forEach(doc => {
             const data = doc.data()
          if (data.email === email) {
-                if(data.password===password){
+                if(Bcrypt.compareSync(password,data.password)){
                     adminObject=data
                 }
                 else{
@@ -497,4 +498,61 @@ export const readMsg = async () =>{
             read:true
         })
     })
+}
+
+export const changePasswordS = async (op,np,adNo)=>{
+    var id;
+    const snap = await firestore.collection("students").get()
+    snap.forEach(doc=>{
+        if(doc.data().admissionNo===adNo){
+            id=doc.id
+        }
+    })
+    const doc = await firestore.collection('students').doc(id).get();
+    const hashedPassword = doc.data().password
+    if(Bcrypt.compareSync(op,hashedPassword)){    
+        await firestore.collection("students").doc(id).update({
+            password:np
+        })
+}else{
+    alert("old password is wrong")
+}
+}
+
+export const changePasswordT = async (op,np,email)=>{
+    var id;
+    const snap = await firestore.collection("teachers").get()
+    snap.forEach(doc=>{
+        if(doc.data().email===email){
+            id=doc.id
+        }
+    })
+    const doc = await firestore.collection('teachers').doc(id).get();
+    const hashedPassword = doc.data().password
+    if(Bcrypt.compareSync(op,hashedPassword)){    
+        await firestore.collection("teachers").doc(id).update({
+            password:np
+        })
+}else{
+    alert("old password is wrong")
+}
+}
+
+export const changePasswordA = async (op,np,email)=>{
+    var id;
+    const snap = await firestore.collection("admin").get()
+    snap.forEach(doc=>{
+        if(doc.data().email===email){
+            id=doc.id
+        }
+    })
+    const doc = await firestore.collection('admin').doc(id).get();
+    const hashedPassword = doc.data().password
+    if(Bcrypt.compareSync(op,hashedPassword)){    
+        await firestore.collection("admin").doc(id).update({
+            password:np
+        })
+}else{
+    alert("old password is wrong")
+}
 }

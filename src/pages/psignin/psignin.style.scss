@@ -11,8 +11,13 @@
   padding: 30px;
   margin-top: 170px;
   align-items: center;
-
+    h2{
+        padding-top: 30px;
+    }
   .signup{
+      cursor: pointer;
+  }
+  .fp{
       cursor: pointer;
   }
 }

@@ -5,8 +5,7 @@ import CustomButton from '../../components/custombutton/custombutton.component';
 import { getTeacher } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.action';
-
-
+ 
 class TeacherSignIn extends Component {
     constructor(props) {
         super(props);
@@ -43,6 +42,7 @@ class TeacherSignIn extends Component {
                     required />
                 <CustomButton>Sign In</CustomButton>
                 </form>
+                <span onClick={()=>{this.props.history.push('/teacherChangePassword')}} className='fp'>Forgotten password?</span>
             </div>
         )
     }

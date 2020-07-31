@@ -5,8 +5,6 @@ import CustomButton from '../../components/custombutton/custombutton.component';
 import { getAdmin } from '../../firebase/firebase.utils';
 import { setCurrentUser } from '../../redux/user/user.action';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
-// import { auth } from '../../firebase/firebase.utils';
 
 class AdminSignIn extends Component {
     constructor(props) {
@@ -44,6 +42,7 @@ class AdminSignIn extends Component {
                     required />
                 <CustomButton>Sign In</CustomButton>
                 </form>
+                <span onClick={()=>{this.props.history.push('/adminChangePassword')}} className='fp'>Forgotten password?</span>
             </div>
         )
     }

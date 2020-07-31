@@ -16,7 +16,7 @@ class GiveAttednance extends Component{
     }
 
     componentDidMount= async ()=>{
-        this.setState({students:await getStudentByClassFilter(this.props.currentUser.class)})
+        this.setState({students:await getStudentByClassFilter(this.props.currentUser.Class)})
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 

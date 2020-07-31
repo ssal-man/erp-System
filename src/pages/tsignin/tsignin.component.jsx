@@ -42,7 +42,7 @@ class TeacherSignIn extends Component {
                     required />
                 <CustomButton>Sign In</CustomButton>
                 </form>
-                <span onClick={()=>{this.props.history.push('/teacherChangePassword')}} className='fp'>Forgotten password?</span>
+                <span onClick={()=>{this.props.history.push('/teacherChangePassword')}} className='fp'>change password?</span>
             </div>
         )
     }

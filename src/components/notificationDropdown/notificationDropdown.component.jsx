@@ -13,7 +13,7 @@ class NotificationDropdown extends Component{
          }
      }
      componentDidMount=async()=>{
-         this.setState({notifications:await getNotificationsDd(this.props.currentUser.status)})
+         this.setState({notifications:await getNotificationsDd(this.props.currentUser.status,this.props.currentUser.Class)})
      }
 
     render(){
@@ -23,7 +23,7 @@ class NotificationDropdown extends Component{
             {this.state.notifications.map(notification=>(
             <div key={notification}><div className='n-dd'>{notification}</div>
             <hr/></div>))}</div>:<div className='n-dd'>No new notifications</div>}
-            <CustomButton>check all notifications</CustomButton>
+            <CustomButton onClick={()=>{this.props.history.push('/notificationPage')}}>check all notifications</CustomButton>
         </div>
     )
     }

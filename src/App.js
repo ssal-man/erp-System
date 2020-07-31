@@ -28,6 +28,7 @@ import EditNotice from './pages/editNotice/editNotice.component';
 import StudentChangePassword from './pages/studentChangePassword/studentChangePassword.component';
 import TeacherChangePassword from './pages/teacherChangePassword/teacherChangePassword.component';
 import AdminChangePassword from './pages/adminChangePassword/adminChangePassword.component';
+import NotificationPage from './pages/notificationPage/notificationPage.component';
 
 function App(props) {
   return (
@@ -58,6 +59,7 @@ function App(props) {
           <Route exact path='/createNoticeAdmin' render={() => props.currentUser ? <CreateNoticeAdmin />:<Homepage/>}/>
           <Route exact path='/checkNoticeAdmin' render={() => props.currentUser ? <CheckNoticeAdmin />:<Homepage/>}/>
           <Route exact path='/editNotice/:sno' render={() => props.currentUser ? <EditNotice />:<Homepage/>}/>
+          <Route exact path='/notificationPage' render={() => props.currentUser ? <NotificationPage />:<Homepage/>}/>
       </Switch>
       <Footer/>    
     </div>

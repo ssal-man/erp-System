@@ -17,7 +17,7 @@ class TeacherCheckAttendance extends Component{
     }
 
     componentDidMount=async()=>{
-        this.setState({students:await getStudentByClass(this.props.currentUser.class)},()=>{this.loadData()})
+        this.setState({students:await getStudentByClass(this.props.currentUser.Class)},()=>{this.loadData()})
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 

@@ -44,7 +44,7 @@ class ParentSignIn extends Component {
                     required />
                 <CustomButton>Sign In</CustomButton>
                 </form>
-                <span onClick={()=>{this.props.history.push('/parentchangePassword')}} className='fp'>Forgotten password?</span>
+                <span onClick={()=>{this.props.history.push('/parentchangePassword')}} className='fp'>Change password?</span>
             </div>
         )
     }

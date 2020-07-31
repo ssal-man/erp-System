@@ -40,7 +40,7 @@ class LeaveApplication extends Component{
             await updateDays(this.props.currentUser.totalDays+i+1,this.props.currentUser.presentDays+i+1,this.props.currentUser.admissionNo)
             from.setDate(from.getDate()+1)
         }
-        await pushNotificationLA(this.state.from,this.state.to,document.getElementById("reason").value,this.props.currentUser.displayName)
+        await pushNotificationLA(this.state.from,this.state.to,document.getElementById("reason").value,this.props.currentUser.displayName,this.props.currentUser.Class)
         this.props.history.push('/')
 
     }

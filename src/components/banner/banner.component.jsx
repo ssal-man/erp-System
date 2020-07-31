@@ -6,13 +6,13 @@ import {ReactComponent as NotificationBell } from '../../assets/notification-bel
 import  NotificationDropdown  from '../notificationDropdown/notificationDropdown.component';
 import { readMsg } from '../../firebase/firebase.utils';
 import AlertNb from '../alertNb/alertNb.component';
+import { withRouter } from 'react-router-dom';
 
 class Banner extends Component{
   constructor(props) {
     super(props);
     this.state={
       hidden:true,
-      vanish:'false'
     }
   }
   
@@ -26,7 +26,6 @@ class Banner extends Component{
             <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a><div ><AlertNb /></div><NotificationBell className='svg-nb' onClick={async()=>{
                 this.setState({hidden:!this.state.hidden})
                  await readMsg()
-                 this.setState({vanish:'true'})
               }}/></div>:null}
             
         </div>
@@ -42,4 +41,4 @@ const mapStateToProps = (state) => ({
     removeUser: user => dispatch(removeUser(user))
   })
 
-export default connect(mapStateToProps,mapDispatchToProps)(Banner);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Banner));

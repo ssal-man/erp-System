@@ -576,3 +576,35 @@ export const getNotifications = async (status,Class)=>{
     }
     return notifications
 }
+
+export const addStudentF = async (displayName,parentEmail,parentPhNo,newPassword,parentName,Class,admissionNo,rollNo,photo) =>{
+    var storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(photo.name);
+    fileRef.put(photo).then(()=>{
+        console.log("uploaded")
+    })
+    await firestore.collection("students").add({
+        displayName,
+        parentEmail,
+        parentName,
+        parentPhNo,
+        photo:photo.name,
+        Class,
+        rollNo,
+        admissionNo,
+        password:newPassword,
+        status:"student",
+        totalDays:0,
+        presentDays:0
+    })
+}
+
+export const addTeacherF = async (displayName,email,newPassword,Class) =>{
+    await firestore.collection("teachers").add({
+        displayName,
+        email,
+        Class,
+        password:newPassword,
+        status:"teacher",
+    })
+}

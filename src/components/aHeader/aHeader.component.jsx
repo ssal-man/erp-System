@@ -15,9 +15,9 @@ const aHeader = () =>{
                 <Link to='/adminHome'><li>Student's Profile</li></Link>
                 <Link to='/changeAttendance'><li>Attendance</li></Link>
                 <Link to='/noticeAdmin'><li>Notice Board</li></Link>
-                {/* <li>Examination</li>
-                <li>Fee Payment</li>
-                <li>Contact Us</li> */}
+                <Link to='/addStudent'><li>Add Student</li></Link>
+                <Link to='/addTeacher'><li>Add Teacher</li></Link>
+                {/* <li>Contact Us</li> */}
             </ul>
             <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a>
         </div>

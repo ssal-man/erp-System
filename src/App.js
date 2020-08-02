@@ -32,13 +32,13 @@ import NotificationPage from './pages/notificationPage/notificationPage.componen
 import FeePayment from './pages/feePayment/feePayment.component';
 import AddStudent from './pages/addStudent/addStudent.component';
 import AddTeacher from './pages/addTeacher/addTeacher.component';
+import ClassCode from './pages/classCode/classCode.component';
 
 function App(props) {
   return (
     <div className='App'>
       <Banner/>
       <Switch>
-
           <Route exact path='/' render={() => props.currentUser ? <Sprofile />:<Homepage/>} /> 
           <Route exact path='/parentSignIn' component={ParentSignIn}/>
           <Route exact path='/teacherSignIn' component={TeacherSignIn}/>
@@ -66,6 +66,7 @@ function App(props) {
           <Route exact path='/feePayment' render={() => props.currentUser ? <FeePayment />:<Homepage/>}/>
           <Route exact path='/addStudent' render={() => props.currentUser ? <AddStudent />:<Homepage/>}/>
           <Route exact path='/addTeacher' render={() => props.currentUser ? <AddTeacher />:<Homepage/>}/>
+          <Route exact path='/classCode' render={() => props.currentUser ? <ClassCode />:<Homepage/>}/>
       </Switch>
       <Footer/>    
     </div>

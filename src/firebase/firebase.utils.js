@@ -608,3 +608,24 @@ export const addTeacherF = async (displayName,email,newPassword,Class) =>{
         status:"teacher",
     })
 }
+
+export const setClassCode = async(Class,classCode)=>{
+    var flag=0;
+    const snap = await firestore.collection("Examination").get()
+    snap.forEach( doc=>{
+        console.log(Class,doc.data().Class)
+        if(Class===doc.data().Class){
+             firestore.collection("Examination").doc(doc.id).update({
+                classCode
+            })
+            flag=1
+        }
+    })
+    if(flag===0){
+        await firestore.collection("Examination").add({
+            Class,
+            classCode
+        })
+    }
+    
+}

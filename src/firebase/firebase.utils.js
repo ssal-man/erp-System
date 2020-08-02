@@ -629,3 +629,15 @@ export const setClassCode = async(Class,classCode)=>{
     }
     
 }
+
+export const getClassCode = async (Class)=>{
+    const snap = await firestore.collection("Examination").get()
+    var str;
+    snap.forEach( doc=>{
+        if(Class===doc.data().Class){
+             str = doc.data().classCode
+        }
+        })
+
+        return str
+}

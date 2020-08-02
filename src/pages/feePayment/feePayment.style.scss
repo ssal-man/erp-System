@@ -1,8 +1,7 @@
 .fpp{
-    margin-top:100px;
+    margin-top:190px;
     height:85vh;
     overflow:hidden;
-    background:linear-gradient(-40deg,white,lightgrey);
     box-sizing:border-box;
     font-family: "Montserrat", sans-serif;
   }
@@ -38,6 +37,7 @@
   .row:nth-of-type(1) .col-xs-5 #cards img{
     width:100px;
     height:100px;
+    border-radius: 0px;
   }
   
   .row:nth-of-type(2) .col-xs-5{
@@ -114,10 +114,11 @@
 
   @media screen and (max-width:1000px){
     .fpp{
+      margin-top:120px;
       #wrapper{
         display:flex;
         height:480px;
-        width:350px;
+        width:380px;
         flex-direction: column;
       }
     }

@@ -16,8 +16,7 @@ const tHeader = () =>{
                 <Link to='/teacherAttendance'><li>Attendance</li></Link>
                 <Link to='/noticeTeacher'><li>Notice Board</li></Link>
                 <Link to='/classCode'><li>Examination</li></Link>
-                {/* <li>Fee Payment</li>
-                <li>Contact Us</li> */}
+                <Link to='/result'><li>Result</li></Link>
             </ul>
             <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a>
         </div>

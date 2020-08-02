@@ -1,0 +1,20 @@
+.exm{
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 170px;
+    #gc{
+        height: 80px;
+        width: 80px;
+        padding:15px;
+    }
+    #g{
+        height: 80px;
+        width: 80px;
+        padding:15px;
+    } 
+    span{    padding: 20px;
+        font-size: large;
+    }
+}

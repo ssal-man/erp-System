@@ -641,3 +641,13 @@ export const getClassCode = async (Class)=>{
 
         return str
 }
+
+export const setResult = async (exam, admissionNo, displayName, obj) =>{
+    obj.forEach(async info=>{
+        await firestore.collection(`${exam}`).add({
+        admissionNo,
+        displayName,
+        info
+    })})
+    
+}

@@ -4,6 +4,9 @@ import CustomButton from '../../components/custombutton/custombutton.component';
 import {ReactComponent as Remove} from '../../assets/minus.svg';
 import {ReactComponent as Add} from '../../assets/plus.svg';
 import THeader from '../../components/tHeader/tHeader.component';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { getStudentByClass, changeSAttendance, setResult } from '../../firebase/firebase.utils';
 
 class Result extends Component{
     constructor(props){
@@ -12,10 +15,14 @@ class Result extends Component{
             i:0,
             name:'',
             tMarks:'',
-            sMarks:''
+            sMarks:'',
+            students:[],
+            student:{},
+            obj:[]
         }
     }
     componentDidMount= async ()=>{
+        this.setState({students:await getStudentByClass(this.props.currentUser.Class)},()=>{this.loadData()})
         var hamburger = document.querySelector('.hamburger');
         var navLinks = document.querySelector('.navlinks');
 
@@ -28,9 +35,29 @@ class Result extends Component{
         navLinks.classList.toggle("open")});
     }
 
+    loadData = async ()=>{
+        this.setState({student:await changeSAttendance(document.getElementById('students').options[document.getElementById('students').selectedIndex].text)})
+    }
+
     handleChange = event => {
         const { value, name } = event.target
         this.setState({ [name]: value })
+    }
+
+    onHandleChange=()=>{
+        this.loadData()
+    }
+
+    setInfo = () =>{
+        for(var j=0;j<=this.state.i;j++){
+            var info={}
+            info.subject = document.getElementById("sName"+j).value
+            info.scored = document.getElementById("sMarks"+j).value
+            info.total = document.getElementById("tMarks"+j).value
+            this.state.obj.push(info)
+        }
+        setResult(document.getElementById('not').value , this.state.student.admissionNo, this.state.student.displayName,this.state.obj)
+        this.props.history.push('/teacherhomepage')
     }
 
     render(){
@@ -42,6 +69,16 @@ class Result extends Component{
                 </div>
                 <label>Enter the name of test :</label>
                 <input id='not' required></input>
+                <div className='r-dd'>
+                SELECT A NAME:
+                <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
+                        {
+                            this.state.students.map(student=>(
+                            <option value={`${student.admissionNo}`} key={student.admissionNo} >{student.displayName}</option>
+                            ))
+                        }
+                </select>
+                </div>
                 <div id='component0'>
                 <div id='t-component0' className='t-component'>
                     <input id={'sName0'} placeholder='Name of Subject' value={this.state.name} onChange={this.handleChange} name='name' required></input>
@@ -65,10 +102,14 @@ class Result extends Component{
                     }}/>
                 
                 </div>
-                <CustomButton>Submit</CustomButton>
+                <CustomButton onClick={this.setInfo}>Submit</CustomButton>
             </div>
         )
     }
 }
 
-export default Result;
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
+  })
+
+export default withRouter(connect(mapStateToProps)(Result));

@@ -651,3 +651,69 @@ export const setResult = async (exam, admissionNo, displayName, obj) =>{
     })})
     
 }
+
+export const getMarks1 = async (admissionNo) =>{
+    var marks=[]
+    const snap = await firestore.collection("WeeklyTest1").get()
+    snap.forEach(doc=>{
+        if(doc.data().admissionNo===admissionNo){
+            marks.push(doc.data().info)
+        }
+    })
+    return marks
+}
+
+export const getMarks2 = async(admissionNo)=>{
+    var marks=[]
+    const snap1 = await firestore.collection("WeeklyTest2").get()
+    snap1.forEach(doc=>{
+        if(doc.data().admissionNo===admissionNo){
+            marks.push(doc.data().info)
+        }
+    })
+    return marks
+}
+
+export const getMarks3 = async(admissionNo)=>{
+    var marks=[]
+    const snap2 = await firestore.collection("WeeklyTest3").get()
+    snap2.forEach(doc=>{
+        if(doc.data().admissionNo===admissionNo){
+            marks.push(doc.data().info)
+        }
+    })
+    return marks
+}
+
+export const getMarks4 = async(admissionNo)=>{
+    var marks=[]
+    const snap3 = await firestore.collection("WeeklyTest4").get()
+    snap3.forEach(doc=>{
+        if(doc.data().admissionNo===admissionNo){
+            marks.push(doc.data().info)
+        }
+    })
+    return marks
+}
+
+export const getMarksH = async(admissionNo)=>{
+    var marks=[]
+    const snap4 = await firestore.collection("HalfYearly").get()
+    snap4.forEach(doc=>{
+        if(doc.data().admissionNo===admissionNo){
+            marks.push(doc.data().info)
+        }
+    })
+    return marks
+}
+
+export const getMarksA = async(admissionNo)=>{
+    var marks=[]
+    const snap5 = await firestore.collection("AnnualExam").get()
+    snap5.forEach(doc=>{
+        if(doc.data().admissionNo===admissionNo){
+            marks.push(doc.data().info)
+        }
+    })
+    return marks
+}

@@ -35,6 +35,7 @@ import AddTeacher from './pages/addTeacher/addTeacher.component';
 import ClassCode from './pages/classCode/classCode.component';
 import Examination from './pages/examination/examination.component';
 import Result from './pages/Results/result.component';
+import CheckResult from './pages/checkResult/checkResult.component';
 
 function App(props) {
   return (
@@ -71,6 +72,7 @@ function App(props) {
           <Route exact path='/classCode' render={() => props.currentUser ? <ClassCode />:<Homepage/>}/>
           <Route exact path='/examination' render={() => props.currentUser ? <Examination />:<Homepage/>}/>
           <Route exact path='/result' render={() => props.currentUser ? <Result />:<Homepage/>}/>
+          <Route exact path='/checkResult' render={() => props.currentUser ? <CheckResult />:<Homepage/>}/>
       </Switch>
       <Footer/>    
     </div>

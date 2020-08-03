@@ -18,6 +18,7 @@ const pHeader = () =>{
                 <Link to='/examination'><li>Examination</li></Link>
                 <Link to='/feePayment'><li>Fee Payment</li></Link>
                 <Link to='/leaveApplication'><li>Apply for leave</li></Link>
+                <Link to='/checkResult'><li>Result</li></Link>
             </ul>
             <a href='/'><div className='sign-out' onClick={()=>{removeUser()}}>Sign Out</div></a>
         </div>

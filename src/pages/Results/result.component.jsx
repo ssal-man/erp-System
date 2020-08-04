@@ -56,7 +56,7 @@ class Result extends Component{
             info.total = document.getElementById("tMarks"+j).value
             this.state.obj.push(info)
         }
-        setResult(document.getElementById('not').value , this.state.student.admissionNo, this.state.student.displayName,this.state.obj)
+        setResult(document.getElementById('not').options[document.getElementById('not').selectedIndex].value , this.state.student.admissionNo, this.state.student.displayName,this.state.obj)
         this.props.history.push('/teacherhomepage')
     }
 
@@ -67,8 +67,15 @@ class Result extends Component{
                 <div className="headerp">
                 <THeader/>
                 </div>
-                <label>Enter the name of test :</label>
-                <input id='not' required></input>
+                <label>Choose the name of test :</label>
+                <select id='not' required>
+                <option value='WeeklyTest1'>Weekly Test 1</option>
+                <option value='WeeklyTest2'>Weekly Test 2</option>
+                <option value='WeeklyTest3'>Weekly Test 3</option>
+                <option value='WeeklyTest4'>Weekly Test 4</option>
+                <option value='HalfYealy'>Half Yearly Examination</option>
+                <option value='AnnualExam'>Annual Examination</option>
+                </select>
                 <div className='r-dd'>
                 SELECT A NAME:
                 <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>

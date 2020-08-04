@@ -133,6 +133,17 @@ const detailList = async (doc,admissionNo,detail,month) => {
     })
 }
 
+export const getSTeacher = async (Class)=>{
+    var teacher={} 
+    const snap =await firestore.collection("teachers").get();
+    snap.forEach(doc=>{
+        if(doc.data().Class===Class){
+            teacher=doc.data()
+        }
+    })
+    return teacher
+}
+
     
 export const compare = (a,b) =>{
     var t = new Date(1970, 0, 1);

@@ -1,10 +1,49 @@
 .chat{
     margin-top:70px;
+    .hr{
+        display: block;
+    }
     .back{
         height: 50px;
         width: 50px;
         position: fixed;
         left:20px;
         cursor: pointer;
+    }
+    .search{
+        margin: 10px;
+        background-color: white;
+        border-radius: 25px;
+    }
+    .name-box{
+        position: fixed;
+        top:140px;
+        height: 754px;
+        width: 378px;
+        background-color: #c3aed6;
+    }
+    .s-b{
+        height: 41px;
+        width: 41px;
+        cursor: pointer;
+        margin-left:275px;
+    }
+    .u-p{
+        height: 41px;
+        width: 41px;
+    }
+    .chat-card{
+        display: flex;
+        flex-direction: row;
+        padding:15px;
+        border-style: solid;
+        border-color: white;
+        border-right:#c3aed6 ;
+        border-left:#c3aed6 ;
+        cursor: pointer;
+        .chat-name{
+            padding-top:10px;
+            padding-left:10px;
+        }
     }
 }

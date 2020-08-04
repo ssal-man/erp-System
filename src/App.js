@@ -78,7 +78,12 @@ class App extends Component{
           <Route exact path='/checkResult' render={() => this.props.currentUser ? <CheckResult />:<Homepage/>}/>
           <Route exact path='/chat' render={() => this.props.currentUser ? <Chat />:<Homepage/>}/>
       </Switch>
-      {this.props.currentUser?<Message className='msg' onClick={()=>{this.props.history.push('/chat')}}/>:null}
+      {this.props.currentUser?
+        this.props.currentUser.status==='teacher'?
+      <Message className='msg' onClick={()=>{this.props.history.push('/chat')}}/>:
+      this.props.currentUser.status==='student'?<Message className='msg' onClick={()=>{this.props.history.push('/chat')}}/>
+      :null
+      :null}
       <Footer/>    
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './leaveApplication.style.scss';
 import {  leaveSApplication, addFromAndTo, pushNotificationLA, updateDays } from '../../firebase/firebase.utils';
-import THeader from '../../components/tHeader/tHeader.component';
+import PHeader from '../../components/pHeader/pHeader.component';
 import { connect } from 'react-redux';
 import CustomButton from '../../components/custombutton/custombutton.component';
 import { withRouter } from 'react-router-dom';
@@ -57,7 +57,7 @@ class LeaveApplication extends Component{
         return(
             <div className='leave-app'>
              <div className="headerp">
-                     <THeader/>
+                     <PHeader/>
             </div>
             <div className='la-fill'>   
             Fill The Information:-

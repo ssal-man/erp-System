@@ -1,4 +1,20 @@
 .App {
   text-align: center;
-  width: auto;
+  width: auto;}
+  .msg{
+    height: 70px;
+    width: 70px;
+    position: fixed;
+    top:780px;
+    cursor: pointer;
+    right:50px;
+  }
+
+@media screen and (max-width:1000px){
+  .msg{
+    height: 50px;
+    width: 50px;
+    top:650px;
+    right:20px;
+  }
 }

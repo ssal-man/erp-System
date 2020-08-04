@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './notificationPage.style.scss';
 import { getNotifications } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import {ReactComponent as Back} from '../../assets/back.svg';
 import { withRouter } from 'react-router-dom';
 
 class NotificationPage extends Component{
@@ -21,6 +22,7 @@ class NotificationPage extends Component{
         console.log(this.state.notifications)
         return(
             <div className='notification-page'>
+                <Back className='back' onClick={()=>{window.history.back()}}/>
                 {this.state.notifications?<ul className='notifications'>
                 {this.state.notifications.map(notification=>(
                     <li className='notification' key={notification.notification}>

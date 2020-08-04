@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="message">
+<path id="Circle" d="M256 512C397.385 512 512 397.385 512 256C512 114.615 397.385 0 256 0C114.615 0 0 114.615 0 256C0 397.385 114.615 512 256 512Z" fill="#221F3B"/>
+<g id="box">
+<path id="Vector" d="M407.064 139H104V373.766H407.064V139Z" fill="white"/>
+<path id="Vector_2" d="M407.063 373.771L255.531 229.669L104 373.771H407.063Z" fill="#E7E7E7"/>
+<path id="Vector_3" d="M104 139.003L255.531 283.105L407.063 139.003H104Z" fill="url(#paint0_linear)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="104" y1="211.054" x2="407.063" y2="211.054" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0099FF"/>
+<stop offset="1" stop-color="#0034A4"/>
+</linearGradient>
+</defs>
+</svg>

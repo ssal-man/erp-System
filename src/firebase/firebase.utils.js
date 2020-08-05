@@ -728,3 +728,24 @@ export const getMarksA = async(admissionNo)=>{
     })
     return marks
 }
+
+export const writeChat = async (to,from,msg) =>{
+    await firestore.collection("chat").add({
+        to,
+        from,
+        msg,
+        dateTime : new Date()
+    })
+}
+
+export const getChats = async (name) =>{
+    var chats=[]
+    const snap =await firestore.collection("chat").get()
+    snap.forEach(doc=>{
+        var data = doc.data()
+        if(data.from===name || data.to===name){
+            chats.push(data)
+        }
+    })
+    return chats
+}

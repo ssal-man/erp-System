@@ -21,7 +21,7 @@ class AlertNb extends Component{
                     var notifications=[]
                     snapShot.forEach(doc=>{
                         const data=doc.data()
-                        if(data.Class===this.props.currentUser.Class){
+                        if(data.Class===this.props.currentUser.Class){  
                             if(!data.read){
                             notifications.push(data.notification)
                             }

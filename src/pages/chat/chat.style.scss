@@ -1,4 +1,59 @@
 .chat{
+    height: 92vh;
+    width: 100%;
+    .chat-zone{
+        position: fixed;
+        background-color: #94c997;
+        background-image: linear-gradient(315deg, #94c997 0%, #daacec 74%);      
+        height: 749px;
+        right:0px;
+        top:140px;
+        width:1470px;
+        #chat-z{
+            position: fixed;
+            bottom:75px;
+            height: 35px;
+            width:1350px;
+            right:80px;
+            border-radius: 33px;
+        }
+        .send{
+            height: 50px;
+            width: 50px;
+            position: fixed;
+            bottom:75px;
+            right:10px;
+            cursor: pointer;
+        }
+    }
+    .chat-header{
+        position: fixed;
+        width:1472px;
+        height:80px;
+        margin-left:378px;
+        top:60px;
+        text-align: start;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .u-p{
+            display: none;
+        }
+        .chat-name{
+            color:white;
+            font-size: 25px;
+            padding-left: 20px;
+        }
+    }
+    .chat-header.show{
+        background-color: #4f3961;
+        .u-p{
+            height: 54px;
+            width: 54px;
+            display: flex;
+            padding-left:30px;
+        }
+    }
     margin-top:70px;
     .hr{
         display: block;
@@ -40,10 +95,21 @@
         border-color: white;
         border-right:#c3aed6 ;
         border-left:#c3aed6 ;
+        border-top:#c3aed6 ;
         cursor: pointer;
         .chat-name{
             padding-top:10px;
             padding-left:10px;
         }
+    }
+}
+
+@media screen and (max-width:1000px){
+    .chat{
+        overflow: scroll;
+        white-space: nowrap;
+    }
+    body{
+        overflow: scroll;
     }
 }

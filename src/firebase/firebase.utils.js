@@ -159,6 +159,15 @@ export const compare = (a,b) =>{
     }
 }
 
+export const compareChat = (a,b) =>{
+    if(a.dateTime.seconds>b.dateTime.seconds){
+        return 1
+    }else{
+        return -1
+    }
+}
+
+
 export const getStudentByClass = async(Class) =>{
     var students=[]
     const ref = firestore.collection(`students`).where("Class","==",Class)

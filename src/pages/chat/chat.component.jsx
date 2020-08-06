@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './chat.style.scss';
 import {ReactComponent as Back} from '../../assets/back.svg';
 import { connect } from 'react-redux';
-import { getStudentByClass, getSTeacher, writeChat } from '../../firebase/firebase.utils';
+import { getStudentByClass, getSTeacher, writeChat, compareChat } from '../../firebase/firebase.utils';
 import {ReactComponent as Sbox} from '../../assets/sb.svg';
 import {ReactComponent as Userp} from '../../assets/up.svg';
 import {ReactComponent as Send} from '../../assets/send.svg';
@@ -32,16 +32,7 @@ class Chat extends Component{
         else if(this.props.currentUser.status==='student'){
             this.setState({teacher: await getSTeacher(this.props.currentUser.Class)})
         }
-        this.unsubscribe = firestore.collection("chat").onSnapshot(snapShot=>{
-            var chat=[]
-            snapShot.forEach(doc=>{
-                var data = doc.data()
-                if(data.from===this.props.currentUser.displayName || data.to===this.props.currentUser.displayName){
-                    chat.push(data)
-                }
-            })
-            this.setState({chats:chat})
-        })
+        
     }
     componentWillUnmount(){
         var msg = document.querySelector('.msg')
@@ -55,9 +46,17 @@ class Chat extends Component{
         chatHeader.classList.toggle("show");
         }
         this.setState({name:person.displayName})
-        // var chat=[]
-        // chat = this.state.chats.filter(chat=>chat.to===this.state.name)
-        // this.setState({filteredChat:chat},()=>{console.log(this.state.filteredChat)})
+        this.unsubscribe = firestore.collection("chat").onSnapshot(snapShot=>{
+            var chat=[]
+            snapShot.forEach(doc=>{
+                var data = doc.data()
+                if((data.from===this.props.currentUser.displayName && data.to===this.state.name)||(data.to===this.props.currentUser.displayName && data.from===this.state.name)){
+                    chat.push(data)
+                }
+            })
+            chat.sort(compareChat)
+            this.setState({chats:chat})
+        })
     }
 
     sendHandle = () =>{
@@ -95,6 +94,14 @@ class Chat extends Component{
                 <div className='chat-name'>{this.state.name}</div>
             </div>
             <div className='chat-zone'>
+                {this.state.chats?this.state.chats.map(chat=>
+                    this.props.currentUser.displayName===chat.from?
+                    (<div className='f-msg' key={chat.dateTime.seconds}>
+                        {chat.msg}
+                    </div>):(<div className='t-msg' key={chat.dateTime.seconds}>
+                    {chat.msg}
+                    </div>)
+                ):null}
                 <input id='chat-z'></input>
                 <Send className='send' onClick={this.sendHandle}/>
             </div>

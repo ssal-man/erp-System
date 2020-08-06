@@ -496,7 +496,7 @@ export const pushNotificationLA = async(from,to,reason,name,Class)=>{
     })
 }
 
-export const getNotificationsDd = async (status,Class)=>{
+export const getNotificationsDd = async (status,Class,name)=>{
     const notifications=[]
     if(status==='teacher'){
         const snap1 =await firestore.collection('notifications').get()
@@ -508,6 +508,11 @@ export const getNotificationsDd = async (status,Class)=>{
                 notifications.push(data.notification)
                 }
             }
+        }
+        else if(data.to === name){
+            if(!data.read){
+                notifications.push(data.notification)
+                }
         }
         })
     }
@@ -757,4 +762,14 @@ export const getChats = async (name) =>{
         }
     })
     return chats
+}
+
+export const writeNotiChat = async (to,from) =>{
+    await firestore.collection('notifications').add({
+        for:'teacher',
+        from,
+        to,
+        read:false,
+        notification:`${from} has send you a message`
+    })
 }

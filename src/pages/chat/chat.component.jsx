@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './chat.style.scss';
 import {ReactComponent as Back} from '../../assets/back.svg';
 import { connect } from 'react-redux';
-import { getStudentByClass, getSTeacher, writeChat, compareChat } from '../../firebase/firebase.utils';
+import { getStudentByClass, getSTeacher, writeChat, compareChat, writeNotiChat } from '../../firebase/firebase.utils';
 import {ReactComponent as Sbox} from '../../assets/sb.svg';
 import {ReactComponent as Userp} from '../../assets/up.svg';
 import {ReactComponent as Send} from '../../assets/send.svg';
@@ -61,6 +61,7 @@ class Chat extends Component{
 
     sendHandle = () =>{
         writeChat(this.state.name,this.props.currentUser.displayName,document.getElementById("chat-z").value)
+        writeNotiChat(this.state.name,this.props.currentUser.displayName)
         document.getElementById("chat-z").value=''
     }
 

@@ -13,7 +13,7 @@ class NotificationDropdown extends Component{
          }
      }
      componentDidMount=async()=>{
-         this.setState({notifications:await getNotificationsDd(this.props.currentUser.status,this.props.currentUser.Class)})
+         this.setState({notifications:await getNotificationsDd(this.props.currentUser.status,this.props.currentUser.Class,this.props.currentUser.displayName)})
      }
 
     render(){

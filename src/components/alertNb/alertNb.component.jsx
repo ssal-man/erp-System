@@ -26,6 +26,11 @@ class AlertNb extends Component{
                             notifications.push(data.notification)
                             }
                         }
+                        else if(data.to===this.props.currentUser.displayName){
+                            if(!data.read){
+                                notifications.push(data.notification)
+                                }
+                        }
                     })
                     this.setState({notifications:notifications})
                 })       

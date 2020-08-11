@@ -1,8 +1,26 @@
 .s-result{
+    .stu-options{
+        
+        display: flex;
+        flex-direction: row;
+        padding:7px;
+        .aStudent{
+            margin:10px;
+            padding: 10px;
+            border-radius: 12px;
+            border-style: solid;
+            box-shadow: 5px 5px 5px;
+            border-color:purple;
+            cursor: pointer;
+        }
+    }
     display: flex;
     margin-top:120px;
     select{
         height: 30px;
+    }
+    .dropdown{
+        margin-bottom:10px;
     }
     .r-dd{
         padding: 15px;
@@ -68,3 +86,10 @@
         }
     }
 } 
+.back{
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    left:420px;
+    cursor: pointer;
+}

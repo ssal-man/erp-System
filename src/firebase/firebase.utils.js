@@ -272,6 +272,7 @@ export const changeSAttendance = async (nameString) =>{
             student=data
         }
     })
+    console.log(student)
     return student;
 }
 
@@ -335,12 +336,15 @@ export const addFromAndTo = async (admissionNo,from,to) =>{
 }
 
 export const writeNotice =async  (file,email,heading,description)=>{
-    var storageRef = firebase.storage().ref();
+try{ var storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(file.name);
     fileRef.put(file).then(()=>{
         console.log("uploaded")
     })
+}
+catch(err){}
     const sno = await getSno()
+    if(file.name){
     firestore.collection('notices').add({
         heading,
         description,
@@ -349,6 +353,14 @@ export const writeNotice =async  (file,email,heading,description)=>{
         email,
         sno:sno+1
     })
+}else{
+    firestore.collection('notices').add({
+        heading,
+        description,
+        craetedAt:new Date(),
+        email,
+        sno:sno+1
+})}
     await firestore.doc("noticesSno/hsno").update({
         sno:sno+1
     })

@@ -61,7 +61,8 @@ class CheckNoticeAdmin extends Component{
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>
                             <div className='pdf'>
-                            <iframe src={`${this.state.firedoc[i++]}`} title='iframe'></iframe>          
+                            {this.state.firedoc.length!==0?
+                            <iframe src={`${this.state.firedoc[i++]}`} title='iframe'></iframe> :null}         
                             </div>
                         </div>
                     ))

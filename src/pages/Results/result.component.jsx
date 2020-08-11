@@ -7,6 +7,7 @@ import THeader from '../../components/tHeader/tHeader.component';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getStudentByClass, changeSAttendance, setResult } from '../../firebase/firebase.utils';
+import {ReactComponent as Back} from '../../assets/back.svg';
 
 class Result extends Component{
     constructor(props){
@@ -18,7 +19,8 @@ class Result extends Component{
             sMarks:'',
             students:[],
             student:{},
-            obj:[]
+            obj:[],
+            now:false
         }
     }
     componentDidMount= async ()=>{
@@ -35,8 +37,8 @@ class Result extends Component{
         navLinks.classList.toggle("open")});
     }
 
-    loadData = async ()=>{
-        this.setState({student:await changeSAttendance(document.getElementById('students').options[document.getElementById('students').selectedIndex].text)})
+    loadData = async (name)=>{
+        this.setState({student:await changeSAttendance(name)})
     }
 
     handleChange = event => {
@@ -44,8 +46,8 @@ class Result extends Component{
         this.setState({ [name]: value })
     }
 
-    onHandleChange=()=>{
-        this.loadData()
+    onHandleChange=(name)=>{
+        this.loadData(name)
     }
 
     setInfo = () =>{
@@ -61,6 +63,7 @@ class Result extends Component{
     }
 
     render(){
+        console.log(this.state.student)
         var {i} = this.state
         return(
             <div className='s-result'>
@@ -73,18 +76,38 @@ class Result extends Component{
                 <option value='WeeklyTest2'>Weekly Test 2</option>
                 <option value='WeeklyTest3'>Weekly Test 3</option>
                 <option value='WeeklyTest4'>Weekly Test 4</option>
-                <option value='HalfYealy'>Half Yearly Examination</option>
+                <option value='HalfYearly'>Half Yearly Examination</option>
                 <option value='AnnualExam'>Annual Examination</option>
                 </select>
                 <div className='r-dd'>
-                SELECT A NAME:
-                <select name="students" id="students" onChange={this.onHandleChange} className='dropdown'>
+                SELECT A CLASS:
+                <select name="students" id="students"  className='dropdown'>
                         {
-                            this.state.students.map(student=>(
-                            <option value={`${student.admissionNo}`} key={student.admissionNo} >{student.displayName}</option>
-                            ))
+                            <option value={this.props.currentUser.Class}>Class {this.props.currentUser.Class}</option>
                         }
-                </select>
+                </select> 
+                {
+                    !this.state.now?
+                    <div>
+                    <div>SELECT A STUDENT:</div>
+                <div className='stu-options'>
+                    {this.state.students.map(student=>(
+                        <div className='aStudent' key={student.admissionNo} onClick={()=>{this.onHandleChange(student.displayName)
+                        this.setState({now:true})}}>
+                            {student.displayName}
+                        </div>
+                    ))}
+                </div>
+                </div>:null
+                }
+                {
+                    this.state.now?
+                    this.state.student?
+                    <div className='s-info-r'>
+                        <Back className='back' onClick={()=>this.setState({now:false})}/>
+                        You are giving marks to {this.state.student.displayName}
+                    </div>:null:null
+                }
                 </div>
                 <div id='component0'>
                 <div id='t-component0' className='t-component'>

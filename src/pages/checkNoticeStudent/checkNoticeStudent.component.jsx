@@ -28,11 +28,13 @@ class CheckNoticeStudent extends Component{
         this.setState({notices:await getNotices()})
         var storage = firebase.storage();
         this.state.notices.forEach(async notice=>{
+            if(notice.doc){
                 var pathReference = storage.ref(notice.doc);
                 try{
                     var docUrl = await pathReference.getDownloadURL()
                 }catch(error){}
                 docs.push(docUrl)
+            }
         })
         setTimeout(()=>{this.setState({firedoc:docs})},2500)
     }
@@ -54,7 +56,8 @@ class CheckNoticeStudent extends Component{
                             <span>Description:{notice.description}</span>
                             <span>Uploaded by:{notice.email}</span>
                             <div className='pdf'>
-                            <iframe src={`${this.state.firedoc[i++]}`} title='iframe'></iframe>
+                            {notice.doc?
+                            <iframe src={`${this.state.firedoc[i++]}`} title='iframe'></iframe> :null}      
                             </div>
                         </div>
                     ))

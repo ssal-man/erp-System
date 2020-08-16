@@ -127,8 +127,53 @@
 
 @media screen and (max-width:1000px){
     .chat{
+        height: 100%;
+        width: 100vh;
         overflow: scroll;
         white-space: nowrap;
+        .chat-zone{
+            position: relative;
+            background-color: #94c997;
+            background-image: linear-gradient(315deg, #94c997 0%, #daacec 74%);      
+            height: 749px;
+            right:-378px;
+            top:70px;
+            width:870px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            .f-msg{
+                background-color: black;
+                color: white;
+                border-radius: 20px;
+                margin-bottom:10px;
+                width: 500px;  
+                height: auto;
+                margin-left: 960px
+            }
+            .t-msg{
+                background-color: white;
+                color: black;
+                border-radius: 20px;
+                margin-bottom:10px;
+                width: 500px;  
+                height: auto;   
+            }
+            #chat-z{
+                bottom:76px;
+                height: 35px;
+                width:260px;
+                max-width: 1350px;
+                right:70px;
+                border-radius: 33px;
+            }
+            .send{
+                height: 50px;
+                width: 50px;
+                bottom:75px;
+                right:10px;
+                cursor: pointer;
+            }
+        }
     }
     body{
         overflow: scroll;

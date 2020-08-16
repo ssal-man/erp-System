@@ -21,7 +21,7 @@ class Chat extends Component{
         }
     }
 
-    unsubscribe = null;
+    unsubscribe = ()=>{};
 
     componentDidMount=async()=>{
         var msg = document.querySelector('.msg')

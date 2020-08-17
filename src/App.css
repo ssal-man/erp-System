@@ -16,9 +16,28 @@
 
 @media screen and (max-width:1000px){
   .msg{
+    position: fixed;
     height: 50px;
     width: 50px;
-    top:650px;
     right:20px;
+    top:680px;
+  }
+  @media screen and (max-height:804px){
+    .msg{
+      position: fixed;
+      height: 50px;
+      width: 50px;
+      right:20px;
+      top:600px;
+    }
+  }
+  @media screen and (max-height:700px){
+    .msg{
+      position: fixed;
+      height: 50px;
+      width: 50px;
+      right:20px;
+      top:500px;
+    }
   }
 }

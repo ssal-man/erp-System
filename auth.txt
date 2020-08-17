@@ -1,15 +1,15 @@
 authentication credentials for demo purpose:
 
 1.TEACHER:
-    email:teacher2@gmail.com
+    email:teacherThomas@gmail.com
     password:teacherteacher
 
 2.STUDENT:
-    admission number:100143
-    password:student    
+      admission number:100100
+      password:student    
 
 3.ADMIN:
-    email:admin@gmail.com
+    email:admin24@gmail.com
     password:adminteacher
 
 For more credentials or any other problems contact the developer:ssalmanyo9@gmail.com   

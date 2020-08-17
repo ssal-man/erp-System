@@ -57,6 +57,8 @@ class Chat extends Component{
             chat.sort(compareChat)
             this.setState({chats:chat})
         })
+        var box = document.querySelector('.name-box')
+        box.classList.toggle("hide");
     }
 
     sendHandle = () =>{

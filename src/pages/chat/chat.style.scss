@@ -132,9 +132,11 @@
         width: 100vw;
         //white-space: nowrap;
         .name-box {
-            display: none;
             z-index: 4;
             width: 100vw;
+        }
+        .name-box.hide{
+            display:none;
         }
 
         .chat-header {
